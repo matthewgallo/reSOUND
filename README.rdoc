@@ -163,7 +163,131 @@ events
 welcome
 
 
+reSOUND  ——>  API QUERIES!!!!
+
+1************************************LOCATION SEARCH**********************************************
+
+City, State/City, Country:
+
+Song kick search for location, to retrieve location id http://api.songkick.com/api/3.0/search/locations.json?query=tokyo+japan&apikey=QG143a2Qf7zybpnb
+
+Zip code:
+
+  With the my_zipcode_gem:
+  geolocation = [zipcode.lat.to_s,zipcode.lon.to_s]
+  lat/lng api call: "http://api.songkick.com/api/3.0/search/locations.json?location=geo:#{geolocation}&apikey=QG143a2Qf7zybpnb"
 
 
 
 
+2***************************************UPCOMING EVENTS***********************************************
+
+
+
+
+Song kick search for upcoming performances by location id http://api.songkick.com/api/3.0/metro_areas/30717/calendar.json?apikey=QG143a2Qf7zybpnb
+
+Big ass .each loop of all of the data I want to pull out for each upcoming event….other note has this information
+-This will display all of the upcoming events for the location the user gives.
+
+
+
+
+
+3*********************************SPOTIFY SEARCH FOR ARTIST ID******************************************
+
+
+
+Event Show Page:
+
+
+Spotify search for artist by ['artist']['displayName'] received from song kick in order to receive the artist id (pull out artist id): 
+
+artist_name  =  upcoming_events['resultsPage']['results']['event'][‘performance’][‘artist’][‘displayName’]
+
+"https://api.spotify.com/v1/search?q=#{artist_name}&type=artist”
+
+Example:
+https://api.spotify.com/v1/search?q=Crosby+Stills+Nash&type=artist
+
+artist_data = https://api.spotify.com/v1/search?q=Crosby+Stills+Nash&type=artist
+artist_id = artist_data['artists’][‘items’][‘id’]
+artist_image = artist_data[‘artists’][‘items’][‘images’][‘url']
+
+*******somehow pullout artist image here as well.
+maybe…
+= image_tag 'artist_image'
+
+
+
+
+4*********************************SPOTIFY TOP TEN TRACKS FOR AN ARTIST*********************************
+
+
+
+
+Event Show Page:
+
+Spotify search for artist’s top 10 tracks using the artist id retrieved in the previous api request. 
+
+interpolated version: https://api.spotify.com/v1/artists/#{artist_id}/top-tracks?country=US
+https://api.spotify.com/v1/artists/2pdvghEHZJtgSXZ7cvNLou/top-tracks?country=US
+with this search, I want to pull out the track name, and the 30 second preview_url for each song.
+  
+  top_ten = https://api.spotify.com/v1/artists/2pdvghEHZJtgSXZ7cvNLou/top-tracks?country=US
+    track_name = top_ten[‘tracks’][‘name']
+    album = top_ten['tracks']['album']['name']
+    clip = top_ten[‘tracks’][‘preview_url']
+
+Event.new(event[‘performance’][‘artist’][‘displayName’])
+top_ten[’tracks’].each do |track|
+
+  1.//Track name
+  Artist.new(track[‘tracks’][‘name’])
+
+  2.//Album that the track is from
+  Artist.new(track['tracks']['album']['name’])
+
+  3.//30 Second preview clip
+  Artist.new(track[‘tracks’][‘preview_url’])
+
+MAP:
+Need to interpolate the venue name, venue city, venue country/state in the google maps embed api call to show a map for the   location of each event’s venue. Only display map on the show page of the event.
+
+venue_name      = upcoming_events['resultsPage']['results']['event'][‘venue’][‘displayName'] 
+venue_city         = upcoming_events['resultsPage']['results']['event'][‘venue'][‘metroArea’][‘displayName']
+venue_country   = upcoming_events['resultsPage']['results']['event'][‘venue’][‘metroArea’][‘country’][‘displayName']
+
+src will include “#{venue_name}+#{venue_city}+#{venue_country}"
+ 
+src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBwShm5GF3L0lj83vRvTV-k6fiHezLE2PY &q=#{venue_name}+#{venue_city}+#{venue_country}”
+
+
+Example:
+<iframe 
+ width=“100%” 
+  height="450” 
+frameborder="0” 
+style="border:0” 
+ src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBwShm5GF3L0lj83vRvTV-k6fiHezLE2PY&q=La Maroquinerie+Paris+France”> 
+</iframe>
+
+6****************SPOTIFY RELATED ARTISTS BASED ON THE PERFORMING ARTIST AT EVENT********************
+
+
+Receive related artists for the performing artist on event show page:
+Figure out how to limit number of related artists given back to me!
+
+https://api.spotify.com/v1/artists/#{artist_id}/related-artists
+related_artist_data = https://api.spotify.com/v1/artists/#{artist_id}/related-artists
+
+I want to pull out the related artist’s name, image, and link to view them on Spotify
+
+related_artist_name = related_artist_data[‘artists’][’name’]
+related_artist_image = related_artist_data[‘artists’][‘images’][‘url’]
+related_artist_spotify = related_artist_data[‘artists’][‘external_urls’][’spotify’]
+
+= image_tag 'related_artist_image'
+
+Example:
+https://api.spotify.com/v1/artists/43ZHCT0cAZBISjO8DG9PnE/related-artists
