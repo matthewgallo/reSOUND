@@ -1,28 +1,169 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+== reSOUND
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+Step ONE
+
+  // User initializes first api request by entering their 
+  
+    zipcode(my_zipcode_gem generates lat-lng) OR
+      1.1 Save lat, lng in variable and interpolate that into the lat/lng api call
+      For example:
+      geolocation = [lat,lng]
+      With the my_zipcode_gem:
+      geolocation = [zipcode.lat.to_s,zipcode.lon.to_s]
+        lat/lng api call:
+                          "http://api.songkick.com/api/3.0/search/locations.json?location=geo:#{geolocation}&apikey=QG143a2Qf7zybpnb"
+    city, state OR
+    city, country
+
+
+Step TWO
+
+  // Save all api info in variable called data
+
+    Dependent on whether user searches by city, state/country OR lat,lng:
+
+      data = http://api.songkick.com/api/3.0/search/locations.json?query=charlotte+us&apikey=QG143a2Qf7zybpnb
+      OR
+      data = http://api.songkick.com/api/3.0/search/locations.json?location=geo:35.2072,-80.8292&apikey=QG143a2Qf7zybpnb
+
+
+Step THREE
+
+  // Pull out the id to be able to interpolate that into the next upcoming events api call
+  // Save id of location in variable called id
+
+    id = data['resultsPage']['results']['location']['id’]
+
+
+Step FOUR
+
+  // Interpolate id variable (holding id of specific location) into the upcoming performances api call
+
+    upcoming_events = "api.songkick.com/api/3.0/metro_area/#{id}/calendar.json?apikey=QG143a2Qf7zybpnb"
+
+
+Step FIVE
+
+  // Create a .each loop with the returned data containing just what I want (somehow restrict the results to only show the first 50 events listed).
+    1. // Name of performing artist
+    2. // Display event popularity
+    3. // Display name of event, artist, and date
+    4. // Displays name of city, state, and country
+    5. // Display map of venue location from lat/lng of venue
+    6. // Save venue lat/lng in variable so I can interpolate in Google Maps static map api #{lat,lng}
+    7. // Display name of venue
+    8. // Display date of event and starting time
+  
+    upcoming_events['resultsPage']['results']['event'].each do |event|
+      
+      1. // Name of performing artist
+      Event.new(event[‘performance’][‘artist’][‘displayName’]) ———> Name of artist
+      
+      2. // Display event popularity
+      Event.new(event[‘popularity’])        --------------------------————> Popularity of event
+
+      3. // Display name of event, artist, and date
+      Event.new(event[‘displayName’])    -------------------------——— > Name of event, artist, and date.
+
+      4. // Displays name of city, state, and country
+      Event.new(event[‘location’][‘city’])  ---------------------------———> Name of city, state, and country
+
+      5. // Display map of venue location from lat/lng of venue
+      Event.new(event[‘venue’][‘lng’])         ------------------------——— > Longitude of venue
+      Event.new(event[‘venue’][‘lat’])           -----------------------——— > Latitude of venue
+
+      6. // Save venue lat/lng in variable so I can interpolate in Google Maps static map api #{lat,lng}
+      // Example
+      %image_tag “https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:%7C19.4250008,-99.1877303”
+      // Interpolated version
+      "https://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:%7C#{venue.lat,venue.lng}"
+
+      7. // Display name of venue
+      Event.new(event[‘venue’][‘displayName’])     ---------------——— >Name of venue
+
+      8. // Display date of event and starting time
+      Event.new(event[’start’][‘date’])    ----------------------------——— > Event date
+      Event.new(event[’start’][’time’])    ----------------------------——— > Event time
+
+Step SIX
+
+  // Have a show page for each upcoming event.
+  // This is where the playlist created from Spotify API will be displayed, along with 30 second audio preview for each song.
+  
+  // Will make GET request from Spotify for each audio preview of a track
+    // GET request for track
+    Example:      https://api.spotify.com/v1/tracks/0eGsygTp906u18L0Oimnem
+    Interpolated version:   "https://api.spotify.com/v1/tracks/#{trackId}"
+
+    // Display image for artist
+    // Maybe some bio info
+    // Show map of venue location
+  
+      
+
+
+???’s AND TODO's
+
+??? ——> How to return only the first 50 results from the upcoming events loop?
+
+TODO ——> MAP FOR VENUE:
+
+Need to interpolate the venue name, venue city, venue country/state in the google maps embed api call to show a map for the   location of each event’s venue. Only display map on the show page of the event.
+
+  [venue][displayName] —>Venue Name
+  [venue][metroArea][displayName] —> Venue City
+  [venue][metroArea][country][displayName] —> Venue country/city
+
+  src will include "[venue][displayName]+[venue][metroArea][displayName]+[venue][metroArea][country][displayName]"
+  
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBwShm5GF3L0lj83vRvTV-k6fiHezLE2PY &q=[venue][displayName]+[venue][metroArea][displayName]+[venue][metroArea][country][displayName]”
+
+
+Example:
+  <iframe 
+   width="600” 
+  height="450” 
+  frameborder="0” 
+  style="border:0” 
+   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBwShm5GF3L0lj83vRvTV-k6fiHezLE2PY&q=La Maroquinerie+Paris+France”> 
+  </iframe>
+
+
+FEATURES ON EVENT SHOW PAGE:
+
+// Performing Artist's Name and image (set artist image as background of show page nav bar with artist name overlayed).
+
+// Date of event, name of venue, time of event
+
+// Related genres to that artist.
+
+// Map of venue location.
+
+// Artist’s top ten tracks, with 30 second preview clip of each song from spotify api.
+
+// Link to venue website on song kick website
+
+// Link to purchase tickets for that event
+
+// List of related artists via Spotify API
+
+
+
+
+
+
+
+
+CONTROLLERS:
+
+application
+events
+welcome
+
+
+
+
+
+
