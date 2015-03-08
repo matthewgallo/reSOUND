@@ -1,0 +1,37 @@
+#headerwrap
+  .container
+    .row
+      .col-lg-6.col-lg-offset-3
+        %h4 WE'RE HERE TO FIND THE MUSIC YOU LIKE
+        %h1 reSOUND.
+        %h4 FIND YOUR FAVORITE PERFORMING ARTISTS NEAR YOU
+%hr
+#works
+  .container
+    .row.centered.mt.mb>
+      %h1 What we do
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("bass_dude.jpg", :class => "img-responsive")
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("girl.jpg", :class => 'img-responsive')
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("headphones.jpg", :class => 'img-responsive')
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("music_near_you.png", :class => 'img-responsive')
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("artists_you_love.png", :class => 'img-responsive')
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("sample.png", :class => 'img-responsive')
+      .col-lg-2.col-md-2.col-sm-2
+      .col-lg-8.col-md-8.col-sm-8.centered
+        %h4 The goal of reSOUND is to provide a service to music listeners that allows them to find local upcoming music performances. To determine whether their music meshes with your musical taste, you can also sample some of their top songs!
+      .col-lg-2.col-md-2.col-sm-2
+#locationwrap
+  .container
+    .row>
+      .col-lg-6.col-lg-offset-3
+        %h4 Enter your location (city, state OR city, country)
+        %form
+          %input{:type => "text"}
+            %button.resoundbutton FIND YOUR MUSIC
+        %h1 reSOUND.

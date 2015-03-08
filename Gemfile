@@ -6,7 +6,7 @@ gem 'haml-rails'
 gem 'erb2haml'
 gem 'better_errors'
 gem 'will_paginate', '~> 3.0.6'
-
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
