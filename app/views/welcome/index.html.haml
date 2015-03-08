@@ -5,7 +5,6 @@
         %h4 WE'RE HERE TO FIND THE MUSIC YOU LIKE
         %h1 reSOUND.
         %h4 FIND YOUR FAVORITE PERFORMING ARTISTS NEAR YOU
-%hr
 #works
   .container
     .row.centered.mt.mb>
@@ -33,5 +32,8 @@
         %h4 Enter your location (city, state OR city, country)
         %form
           %input{:type => "text"}
-            %button.resoundbutton FIND YOUR MUSIC
+            %br
+            %br
+            %button.resoundbutton
+              = link_to "FIND YOUR MUSIC", events_path
         %h1 reSOUND.

@@ -116,7 +116,9 @@ h1, h2, h3, h4, h5, h6 {
     background-size: cover;
 }
 
-#headerwrap h1 {
+#headerwrap h1,
+#aboutwrap h1
+ {
 	color:#ffffff;
 	padding-top: 10px;
 	padding-bottom: 20px;
@@ -227,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #aboutwrap {	
-	background: url(../img/about.jpg) no-repeat center top;
+	background: url(about.jpg) no-repeat center top;
 	margin-top: -70px;
 	padding-top: 250px;
 	text-align:center;
