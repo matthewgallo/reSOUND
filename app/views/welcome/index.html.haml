@@ -2,13 +2,17 @@
   .container
     .row
       .col-lg-6.col-lg-offset-3
-        %h4 WE'RE HERE TO FIND THE MUSIC YOU LIKE
+        %strong
+          %h4 WE'RE HERE TO FIND THE MUSIC YOU LIKE
         %h1 reSOUND.
-        %h4 FIND YOUR FAVORITE PERFORMING ARTISTS NEAR YOU
+        %h4 SEE WHAT PERFORMING ARTISTS ARE PLAYING NEAR YOU
 #works
   .container
-    .row.centered.mt.mb>
+    .row.centered.mt.mb
       %h1 What we do
+      %br
+      %hr
+      %br
       .col-lg-4.col-md-4.col-sm-4.gallery
         = image_tag("bass_dude.jpg", :class => "img-responsive")
       .col-lg-4.col-md-4.col-sm-4.gallery
@@ -20,20 +24,22 @@
       .col-lg-4.col-md-4.col-sm-4.gallery
         = image_tag("artists_you_love.png", :class => 'img-responsive')
       .col-lg-4.col-md-4.col-sm-4.gallery
-        = image_tag("sample.png", :class => 'img-responsive')
+        = image_tag("sample.png", :class => 'img-responsive')  
       .col-lg-2.col-md-2.col-sm-2
       .col-lg-8.col-md-8.col-sm-8.centered
+        %hr
         %h4 The goal of reSOUND is to provide a service to music listeners that allows them to find local upcoming music performances. To determine whether their music meshes with your musical taste, you can also sample some of their top songs!
       .col-lg-2.col-md-2.col-sm-2
 #locationwrap
   .container
-    .row>
+    .row
       .col-lg-6.col-lg-offset-3
-        %h4 Enter your location (city, state OR city, country)
+        %strong
+          %h4 Enter your location (city, state OR city, country)
         %form
+          %br
           %input{:type => "text"}
             %br
             %br
-            %button.resoundbutton
-              = link_to "FIND YOUR MUSIC", events_path
-        %h1 reSOUND.
+            %button.resoundbutton.location_search FIND YOUR MUSIC
+        %h2 reSOUND.
