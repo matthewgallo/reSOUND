@@ -1,13 +1,35 @@
 $( document ).ready(function() {
-   $('').click(function(){
-
-    var city = $('.location_search').val();
+   
+   $('.location_search').click(function(){
+    var city = $('.user_location').val();
     $.ajax({
       type: "GET",
       url: '/events',
       dataType: 'script',
-      data: { location: city }
+      data: { user_location: city }
     });
-
    });
+
+   // var upcoming_events = $('location_api').val();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });

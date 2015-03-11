@@ -35,11 +35,10 @@
     .row
       .col-lg-6.col-lg-offset-3
         %strong
-          %h4 Enter your location (city, state OR city, country)
-        %form
+          %h4 Enter your location (city, state OR city, country)        
+        %br
+        %input{:class => "user_location", :type => "text"}
           %br
-          %input{:type => "text"}
-            %br
-            %br
-            %button.resoundbutton.location_search FIND YOUR MUSIC
-        %h2 reSOUND.
+          %br
+        %button.resoundbutton.location_search FIND YOUR MUSIC
+      %h2 reSOUND.
