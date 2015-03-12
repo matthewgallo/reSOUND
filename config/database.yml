@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
   database: resounds_production
   username: resounds
   password: <%= ENV['RESOUNDS_DATABASE_PASSWORD'] %>

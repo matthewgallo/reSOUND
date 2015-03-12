@@ -1,1 +1,0 @@
-json.extract! @events, :blah, :blah, :blah

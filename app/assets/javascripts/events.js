@@ -10,24 +10,20 @@ $( document ).ready(function() {
     });
    });
 
-   // var upcoming_events = $('location_api').val();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$('.well').on('click', '.eventShow', function(e) {
+  e.preventDefault();
+   var eventShowPage =  $(this).attr('class');
+     $.ajax({
+      type: 'GET',
+      url: '/events/show/?event=' + eventShowpage,
+      success: function(data) {
+        $('body').html(data);
+      }
+     });
+  });
 
 
 

@@ -7,8 +7,10 @@ gem 'erb2haml'
 gem 'better_errors'
 gem 'will_paginate', '~> 3.0.6'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'pg'
+gem 'pg', group: :deployment
 gem 'awesome_print'
+gem 'jquery-turbolinks'
+gem 'rails_12factor', group: :production
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use mysql as the database for Active Record
