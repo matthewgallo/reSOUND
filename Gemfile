@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.0'
 
 gem 'httparty'
 gem 'quiet_assets', group: :development

@@ -13,7 +13,7 @@ class ArtistsController < ApplicationController
 
     artist_events = HTTParty.get URI.encode("http://api.songkick.com/api/3.0/artists/#{artist_id}/calendar.json?apikey=QG143a2Qf7zybpnb")
     @artist_event_details = artist_events["resultsPage"]["results"]["event"]
-
+    # @artist_event_details.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.js
       format.html
