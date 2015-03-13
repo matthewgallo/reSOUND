@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'artists/index'
+
+  get 'artists/show'
+
   get 'about/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :about, only: [:index]
   resources :events
+  resources :artists
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

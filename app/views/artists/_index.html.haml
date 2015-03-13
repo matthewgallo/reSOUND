@@ -1,15 +1,12 @@
 %h1.centered
-  Upcoming Music events in
-  = @user_location.titleize
+  Upcoming Music events for
+  = @artist_name.titleize
 %br
 %br
 .container
   .row.centered
-    - @event_details.each do |event|  
+    - @artist_event_details.each do |event|  
       .well
-        %strong Artist Name
-        - event['performance'].each do |performance| 
-          = performance['displayName']
         %br
         %strong Venue Name
         = event['venue']['displayName']
@@ -24,4 +21,4 @@
         = event['start']['date']
         %br
         %br
-        = link_to "View this event", 'javascript:void(0)', :class => "eventshow"
+        = link_to "View this event", 'javascript:void(0)', :class => "artisteventshow"
