@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'venues/index'
+
+  get 'venues/show'
+
   get 'artists/index'
 
   get 'artists/show'
@@ -13,6 +17,7 @@ Rails.application.routes.draw do
   resources :about, only: [:index]
   resources :events
   resources :artists
+  resources :venues
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

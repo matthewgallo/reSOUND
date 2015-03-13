@@ -1,0 +1,27 @@
+%h1.centered
+  Upcoming Music events for
+  = @venue_name.titleize
+%br
+%br
+.container
+  .row.centered
+    - @venue_event_details.each do |event|  
+      .well
+        %strong Artist Name
+        - event['performance'].each do |performance| 
+          = performance['displayName']
+        %br
+        %strong Venue Name
+        = event['venue']['displayName']
+        %br
+        %strong Location
+        = event['location']['city']
+        %br
+        %strong Event Name
+        = event['displayName']
+        %br
+        %strong Date
+        = event['start']['date']
+        %br
+        %br
+        = link_to "View this event", 'javascript:void(0)', :class => "venueeventshow"

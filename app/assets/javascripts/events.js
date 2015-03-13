@@ -14,8 +14,8 @@ $( document ).ready(function() {
    });
 
 
-// Grab input of artist search and perform AJAX request
-// Artists index via AJAX
+  // Grab input of artist search and perform AJAX request
+  // Artists index via AJAX
   $('.artist_search').click(function(){
     var artist = $('.artist_name').val();
     $.ajax({
@@ -26,7 +26,17 @@ $( document ).ready(function() {
     });
    });
 
-
+  // Grab input of venue search and perform AJAX request
+  // Venues index via AJAX
+  $('.venue_search').click(function(){
+    var venue = $('.venue_name').val();
+    $.ajax({
+      type: "GET",
+      url: '/venues',
+      dataType: 'script',
+      data: { venue_name: venue }
+    });
+   });
 
 
 

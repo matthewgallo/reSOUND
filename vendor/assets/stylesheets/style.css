@@ -309,7 +309,49 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   color: #1abc9c
 }
+#venuesearchwrap {
+  background: url(venue.jpg) no-repeat center top fixed;
+  margin-top: -70px;
+  padding-top: 250px;
+  text-align:center;
+  background-attachment: relative;
+  background-position: center center;
+  min-height: 650px;
+  width: 100%;
+  
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#venuesearchwrap h1 {
+  color:#1abc9c;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  letter-spacing: 1.6vw;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+#venuesearchwrap h2 {
+  color:#1abc9c;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  letter-spacing: 1.6vw;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+#venuesearchwrap h4 {
+  font-weight: 400;
+  color: #1abc9c
+}
 
 
 /* Gallery */
