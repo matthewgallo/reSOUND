@@ -49,7 +49,15 @@ $( document ).ready(function() {
    });
 
 
+  // About index via AJAX
+  $('.aboutPage').click(function(){
+    $.ajax({
+      type: "GET",
+      url: "/about",
+      dataType: "script"
+    });
 
+  });
 // AJAX REQUESTS FOR SHOW PAGES
   
 

@@ -15,13 +15,8 @@ gem 'jquery-turbolinks'
 gem 'rails_12factor', group: :production
 
 
-
 # Database setup
 # gem "mongoid", "~> 4.0.0"
-
-
-
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
