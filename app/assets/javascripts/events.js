@@ -54,7 +54,13 @@ $( document ).ready(function() {
     $.ajax({
       type: "GET",
       url: "/about",
-      dataType: "script"
+      dataType: "script",
+      success: function(){
+        $('html, body').animate({
+          scrollTop: $("#aboutwrap").offset().top
+      }, 1000);
+        return false;
+      }
     });
 
   });
