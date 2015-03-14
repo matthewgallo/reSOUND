@@ -1,14 +1,3 @@
 == reSOUND
 
 See wiki for details!
-
-
-
-
-/ - @event_details.each do |event|
- /  - event['performance'].each do |performance| 
- /    = performance['displayName']
- /  = event['venue']['displayName']
- /  = event['location']['city']
- /  = event['displayName']
- /  = event['start']['date']

@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  get 'venues/index'
-
-  get 'venues/show'
-
-  get 'artists/index'
-
-  get 'artists/show'
-
-  get 'about/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

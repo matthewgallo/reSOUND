@@ -18,17 +18,23 @@ class EventsController < ApplicationController
     # Displays all upcoming events for that location:
     @event_details = upcoming_events['resultsPage']['results']['event']
     
+
+    # Create counter so I have an ID:
+    counter = 0
+    @event_details.each do |event|
+      counter += 1
+      event.merge!({'counter_id' => counter})
+      ap event
+    end
+
+
     respond_to do |format|
       format.js
       format.html
     end
     # @event_details.paginate(:page => params[:page], :per_page => 10)
   
-    @events = Event.all
-    
-    
-    
-    
+    # @events = Event.all
   end
 
   
@@ -36,7 +42,6 @@ class EventsController < ApplicationController
 
 
   def show
-
     # @events = upcoming_events['resultsPage']['results']['event']
 
     # @events.select{|obj| obj.id == params[:id]}
@@ -52,8 +57,4 @@ class EventsController < ApplicationController
 
     @event = Event.find params[:id]
   end
-
-
-
-
 end

@@ -14,6 +14,13 @@ class VenuesController < ApplicationController
     venue_events = HTTParty.get URI.encode("http://api.songkick.com/api/3.0/venues/#{venue_id}/calendar.json?apikey=QG143a2Qf7zybpnb")
     @venue_event_details = venue_events["resultsPage"]["results"]["event"]
 
+    # Create counter so I have an ID:
+    counter = 0
+    @venue_event_details.each do |event|
+      counter += 1
+      event.merge!({'counter_id' => counter})
+      ap event
+    end
 
     respond_to do |format|
       format.js

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.0'
 
+# Gems I've added
 gem 'httparty'
 gem 'quiet_assets', group: :development
 gem 'haml-rails'
@@ -12,6 +13,16 @@ gem 'pg', group: :deployment
 gem 'awesome_print'
 gem 'jquery-turbolinks'
 gem 'rails_12factor', group: :production
+
+
+
+# Database setup
+# gem "mongoid", "~> 4.0.0"
+
+
+
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use mysql as the database for Active Record
@@ -47,14 +58,15 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  gem 'capybara'
-  gem 'launchy'
+  # My testing Gems
+    gem 'capybara'
+    gem 'launchy'
 
-  # Needed for headless testing
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
-  gem 'factory_girl_rails'
-  gem 'database_cleaner'
+    # Needed for headless testing
+    gem 'selenium-webdriver'
+    gem 'chromedriver-helper'
+    gem 'factory_girl_rails'
+    gem 'database_cleaner'
 
 
   # Access an IRB console on exception pages or by using <%= console %> in views
