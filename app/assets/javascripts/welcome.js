@@ -6,6 +6,7 @@ $( document ).ready(function() {
       $('html, body').animate({
           scrollTop: $("#locationwrap").offset().top
       }, 2000);
+      return false;
   });
 
   // Scroll to Artist Search
@@ -13,6 +14,7 @@ $( document ).ready(function() {
       $('html, body').animate({
           scrollTop: $("#artistsearchwrap").offset().top
       }, 2000);
+      return false;
   });
 
   // Scroll to Venue Search
@@ -20,17 +22,18 @@ $( document ).ready(function() {
       $('html, body').animate({
           scrollTop: $("#venuesearchwrap").offset().top
       }, 2000);
+      return false;
   });
 
+  // Scroll to Home
+  $(".home").click(function() {
+      $('html, body').animate({ scrollTop: 0 }, 'slow');
+  });
 
-
-
-
-
-
-
-
-
+    // Scroll to Home
+  $(".resound").click(function() {
+     $('html, body').animate({ scrollTop: 0 }, 'slow');
+  });
 
 
 });
