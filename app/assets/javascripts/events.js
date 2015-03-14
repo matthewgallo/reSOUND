@@ -11,7 +11,7 @@ $( document ).ready(function() {
         url: '/events',
         dataType: 'script',
         data: { user_location: city },
-        success: function(s) {
+        success: function(){
           $('html, body').animate({ scrollTop: 0 }, 'slow');
         }
       });
@@ -27,7 +27,7 @@ $( document ).ready(function() {
         url: '/artists',
         dataType: 'script',
         data: { artist_name: artist },
-        success: function(s) {
+        success: function(){
           $('html, body').animate({ scrollTop: 0 }, 'slow');
         }
       });
@@ -42,7 +42,7 @@ $( document ).ready(function() {
         url: '/venues',
         dataType: 'script',
         data: { venue_name: venue },
-        success: function(s) {
+        success: function(){
           $('html, body').animate({ scrollTop: 0 }, 'slow');
         }
       });
