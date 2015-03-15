@@ -19,7 +19,11 @@ class VenuesController < ApplicationController
     @venue_event_details.each do |event|
       counter += 1
       event.merge!({'counter_id' => counter})
-      ap event
+      event_json = JSON.generate event
+      event_id = counter
+      ap event_json
+      ap event_id
+      # ap event
     end
 
     respond_to do |format|

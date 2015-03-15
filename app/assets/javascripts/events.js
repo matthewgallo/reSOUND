@@ -62,7 +62,6 @@ $( document ).ready(function() {
         return false;
       }
     });
-
   });
 // AJAX REQUESTS FOR SHOW PAGES
   

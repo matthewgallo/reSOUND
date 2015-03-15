@@ -23,5 +23,7 @@
         %strong Date
         = event['start']['date']
         %br
+        %strong Event ID
+        = event['counter_id']
         %br
-        = link_to "View this event", 'javascript:void(0)', :class => "eventshow"
+        = link_to "View this event", event_path(event['counter_id']), :class => "eventshow"

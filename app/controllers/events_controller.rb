@@ -18,15 +18,17 @@ class EventsController < ApplicationController
     # Displays all upcoming events for that location:
     @event_details = upcoming_events['resultsPage']['results']['event']
     
-
+    puts "Event ID's for #{@user_location}:"
     # Create counter so I have an ID:
     counter = 0
     @event_details.each do |event|
       counter += 1
       event.merge!({'counter_id' => counter})
-      ap event
+      event_json = JSON.generate event
+      event_id = counter
+      ap event_json
+      ap event_id
     end
-
 
     respond_to do |format|
       format.js

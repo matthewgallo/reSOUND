@@ -50,6 +50,22 @@ a {
   margin-top: 70px;
 }
 
+.user_location, 
+.artist_name, 
+.venue_name {
+  background: transparent;
+  color: #1abc9c;
+  border: 0;
+  outline: 0;
+  border-bottom: 3px solid #ccc;
+  width: 450px;
+  text-align: center;
+  font-size: 40px;
+  
+
+
+}
+
 /* ==========================================================================
    General styles
    ========================================================================== */
@@ -148,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align:center;
   background-attachment: relative;
   background-position: center center;
-  min-height: 720px;
+  min-height: 770px;
   width: 100%;
   
     -webkit-background-size: 100%;
@@ -180,9 +196,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-#locationwrap h4 {
+#locationwrap h3, h4 {
   font-weight: 400;
-  color: #1abc9c
+  color: #1abc9c;
+  font-size: 25px;
 }
 
 #social {
@@ -241,10 +258,13 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 }
 
-#workwrap h4 {
+#workwrap h4,
+.mission-statement {
 	font-weight: 400;
-	color: #ffffff
+	color: #4a4a4a;
+  font-size: 20px;
 }
+
 
 #aboutwrap {	
 	background: url(about.jpg) no-repeat center top fixed;
@@ -253,7 +273,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
-	min-height: 550px;
+	min-height: 650px;
 	width: 100%;
 	
     -webkit-background-size: 100%;
@@ -273,7 +293,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align:center;
   background-attachment: relative;
   background-position: center center;
-  min-height: 720px;
+  min-height: 770px;
   width: 100%;
   
     -webkit-background-size: 100%;
@@ -305,9 +325,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-#artistsearchwrap h4 {
+#artistsearchwrap h3, h4 {
   font-weight: 400;
-  color: #1abc9c
+  color: #1abc9c;
+  font-size: 25px;
 }
 #venuesearchwrap {
   background: url(venue.jpg) no-repeat center top fixed;
@@ -348,9 +369,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-#venuesearchwrap h4 {
+#venuesearchwrap h3, h4 {
   font-weight: 400;
-  color: #1abc9c
+  color: #1abc9c;
+  font-size: 25px;
 }
 
 
