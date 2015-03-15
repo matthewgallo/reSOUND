@@ -272,6 +272,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  json
   launchy
   mysql2
   pg

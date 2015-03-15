@@ -3,6 +3,8 @@ $( document ).ready(function() {
 // Add the pointer cursor when hovering over About link in the navbar. 
   $('.aboutPage').css('cursor', 'pointer');
 
+
+
 // Slow scroll to wrap sections....
   // Scroll to Location Search
   $(".locationWrapper").click(function() {

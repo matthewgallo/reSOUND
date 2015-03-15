@@ -14,6 +14,7 @@ gem 'awesome_print'
 gem 'jquery-turbolinks'
 gem 'rails_12factor', group: :production
 gem 'jquery-ui-rails'
+gem 'json'
 
 # Database setup
 # gem "mongoid", "~> 4.0.0"

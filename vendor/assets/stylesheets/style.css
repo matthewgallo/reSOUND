@@ -129,7 +129,7 @@ li > a {
    ========================================================================== */
 
 #headerwrap {
-	background: url(band_van.jpg) no-repeat center top fixed;
+	background: url(header3.jpg) no-repeat center top fixed;
 	margin-top: -70px;
 	padding-top: 250px;
 	text-align:center;
@@ -137,6 +137,7 @@ li > a {
 	background-position: center center;
 	min-height: 650px;
 	width: 100%;
+  opacity: .7;
 	
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
@@ -163,11 +164,11 @@ li > a {
 
 #headerwrap h4 {
 	font-weight: 400;
-	color: #ffffff
+	color: #c0392b;
 }
 
 #locationwrap {
-  background: url(live_band.jpg) no-repeat center top fixed;
+  background: url(header2.jpg) no-repeat center top fixed;
   margin-top: -70px;
   padding-top: 250px;
   text-align:center;
@@ -206,6 +207,7 @@ li > a {
 }
 
 #locationwrap h3, h4 {
+  font-family: 'baron-neue-black-italic';
   font-weight: 400;
   color: #1abc9c;
   font-size: 25px;
@@ -296,7 +298,7 @@ li > a {
     background-size: cover;
 }
 #artistsearchwrap {
-  background: url(artist_search.jpg) no-repeat center top fixed;
+  background: url(artist.jpg) no-repeat center top fixed;
   margin-top: -70px;
   padding-top: 250px;
   text-align:center;
@@ -304,6 +306,7 @@ li > a {
   background-position: center center;
   min-height: 770px;
   width: 100%;
+  
   
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
@@ -335,6 +338,7 @@ li > a {
 }
 
 #artistsearchwrap h3, h4 {
+  font-family: 'baron-neue-black-italic';
   font-weight: 400;
   color: #1abc9c;
   font-size: 25px;
@@ -379,6 +383,7 @@ li > a {
 }
 
 #venuesearchwrap h3, h4 {
+  font-family: 'baron-neue-black-italic';
   font-weight: 400;
   color: #1abc9c;
   font-size: 25px;

@@ -4,7 +4,10 @@ $( document ).ready(function() {
 
    // Grab input of LOCATION search and perform AJAX request
    // Event index via AJAX
-   $('.location_search').click(function(){
+   $('.location_search').click(function(e){
+    if(e.keyCode == 13){
+      $('.location_search').trigger('click');
+      }
     var city = $('.user_location').val();
       $.ajax({
         type: "GET",
@@ -16,7 +19,10 @@ $( document ).ready(function() {
         }
       });
    });
-  
+
+
+
+
 
   // Grab input of ARTIST search and perform AJAX request
   // Artists index via AJAX

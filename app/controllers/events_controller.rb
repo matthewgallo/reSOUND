@@ -44,6 +44,8 @@ class EventsController < ApplicationController
 
 
   def show
+    event_show = JSON.parse(@event_details)
+    ap event_show
     # @events = upcoming_events['resultsPage']['results']['event']
 
     # @events.select{|obj| obj.id == params[:id]}
