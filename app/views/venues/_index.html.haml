@@ -1,29 +1,31 @@
-%h1.centered
+%h1.centered.resound
   Upcoming Music events for
+%h1.centered.resound.resound-search
   = @venue_name.titleize
 %br
 %br
 .container
   .row.centered
     - @venue_event_details.each do |event|  
-      .well
-        %strong Artist Name
-        - event['performance'].each do |performance| 
-          = performance['displayName']
-        %br
-        %strong Venue Name
-        = event['venue']['displayName']
-        %br
-        %strong Location
-        = event['location']['city']
-        %br
-        %strong Event Name
-        = event['displayName']
-        %br
-        %strong Date
-        = event['start']['date']
-        %br
-        %strong Event ID
-        = event['counter_id']
-        %br
-        = link_to "View this event", event_path(event['counter_id']), :class => "venueeventshow"
+      .col-sm-6
+        .well
+          %strong Artist Name
+          - event['performance'].each do |performance| 
+            = performance['displayName']
+          %br
+          %strong Venue Name
+          = event['venue']['displayName']
+          %br
+          %strong Location
+          = event['location']['city']
+          %br
+          %strong Event Name
+          = event['displayName']
+          %br
+          %strong Date
+          = event['start']['date']
+          %br
+          %strong Event ID
+          = event['counter_id']
+          %br
+          = link_to "View this event", event_path(event['counter_id']), :class => "venueeventshow"
