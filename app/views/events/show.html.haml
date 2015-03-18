@@ -1,0 +1,39 @@
+%h1.centered
+  Location Event info!
+%h1.centered.resound.resound-search
+  = @event.event_json['location']['city']
+.centered
+  .well
+    %strong Artist Name
+    %br
+    - @event.event_json['performance'].each do |performance|
+      = performance['displayName']
+      %br
+    %strong Venue Name
+    %br
+    = @event.event_json['venue']['displayName']
+    %br
+    %strong Location
+    %br
+    = @event.event_json['location']['city']
+    %br
+    %strong Event Name
+    %br
+    = @event.event_json['displayName']
+    %br
+    %strong Date
+    %br
+    = @event.event_json['start']['date']
+    %br
+    %strong Event ID
+    %br
+    = @event.event_json['counter_id']
+    %br
+    %strong View More details
+    %br
+    = link_to "View More Details on this Event through Songkick", @event.event_json['uri'], :target => "_blank"
+    %br
+    = link_to "View More Details on this Venue through Songkick", @event.event_json['venue']['uri'], :target => "_blank"
+    %br
+    = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@event.event_json['venue']['displayName']},#{@event.event_json['location']['city']}&zoom=14&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@event.event_json['venue']['displayName']},#{@event.event_json['location']['city']}"
+    / = link_to "Return to list of events"

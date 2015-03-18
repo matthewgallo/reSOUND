@@ -32,7 +32,7 @@ $( document ).ready(function() {
         type: "GET",
         url: '/artists',
         dataType: 'script',
-        data: { artist_name: artist },
+        data: { artist_name: artist},
         success: function(){
           $('html, body').animate({ scrollTop: 0 }, 'slow');
         }
@@ -72,18 +72,26 @@ $( document ).ready(function() {
 // AJAX REQUESTS FOR SHOW PAGES
   
 
-  // $("#eventList ")
+  
 
-  // Upcoming LOCATION events show page AJAX request
-  // $('.well').on('click', '.eventshow', function() {
-  //    var eventShowPage =  $(this).attr('class');
-  //      $.ajax({
-  //       type: 'GET',
-  //       url: '/events/show/?event=' + eventShowpage,
-  //       success: function(data) {
-  //         $('body').html(data);
-  //       }
-  //      });
-  //   });
+  // Upcoming LOCATION event's show page AJAX request
+
+  $('.well').on('click', '.artisteventshow', function() {
+     $.ajax({
+      type: 'GET',
+      url: '/artists/' + id,
+      dataType: "script",
+      success: function(data) {
+        $('html, body').animate({
+          scrollTop: $("#artistshow").offset().top
+          }, 1000);
+        return false;
+        }
+      });
+    });
+
+
+
+
 
 });

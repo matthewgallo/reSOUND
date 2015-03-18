@@ -14,24 +14,27 @@
 ActiveRecord::Schema.define(version: 20150314222555) do
 
   create_table "artists", force: :cascade do |t|
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.text     "event_json", limit: 65535
-    t.integer  "event_id",   limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.text     "event_json",            limit: 4294967295
+    t.string   "event_artist",          limit: 255
+    t.integer  "artist_performance_id", limit: 4
   end
 
   create_table "events", force: :cascade do |t|
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.text     "event_json", limit: 65535
-    t.integer  "event_id",   limit: 4
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.text     "event_json",              limit: 4294967295
+    t.string   "event_location",          limit: 255
+    t.integer  "location_performance_id", limit: 4
   end
 
   create_table "venues", force: :cascade do |t|
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.text     "event_json", limit: 65535
-    t.integer  "event_id",   limit: 4
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.text     "event_json",           limit: 4294967295
+    t.string   "event_venue",          limit: 255
+    t.integer  "venue_performance_id", limit: 4
   end
 
 end

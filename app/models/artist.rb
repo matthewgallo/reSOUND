@@ -1,4 +1,5 @@
 class Artist < ActiveRecord::Base
+  serialize :event_json, Hash
 end
 
 

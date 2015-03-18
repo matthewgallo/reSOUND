@@ -13,8 +13,10 @@ class ArtistsController < ApplicationController
 
     artist_events = HTTParty.get URI.encode("http://api.songkick.com/api/3.0/artists/#{artist_id}/calendar.json?apikey=QG143a2Qf7zybpnb")
     @artist_event_details = artist_events["resultsPage"]["results"]["event"]
-    
-
+  
+    @artist_venue_lat = @artist_event_details[0]['venue']['lat']
+    @artist_venue_lng = @artist_event_details[0]['venue']['lng']
+  
     # Create counter so I have an ID:
     counter = 0
     @artist_event_details.each do |event|
@@ -22,27 +24,57 @@ class ArtistsController < ApplicationController
       event.merge!({'counter_id' => counter})
       event_json = JSON.generate event
       event_id = counter
-      ap event_json
-      ap event_id
+      @artist_performance_id = event['id']
+      # ap event_json
+      # ap event_id
+      # If the event already exists in db,
+      # don't create it, use what is already in the db
+      # else 
+      # search for it from the API.
+      # end
+       # if @artist_performance_id.length > 0
+          # take what is already in the database
+       # else
+          # get it from the api
+       # end
+       
+        ap @artist_performance_id
+      
+        
+      Artist.create({ artist_performance_id: @artist_performance_id, event_artist: @artist_name, event_json: event })
     end
-    # ap @artist_event_details
+    @artists = Artist.where("event_artist LIKE ?", "%#{params[:artist_name]}%")
+    # ap params[:q]
+    # @artists = Artist.paginate(:page => params[:page], :per_page => 20)
 
-    # @artist_event_details.paginate(:page => params[:page], :per_page => 10)
+
     respond_to do |format|
       format.js
       format.html
     end
-
-
-
-
-    # @artists = Artist.all
-
-
   end
 
 
 
   def show
+    # ap params[:artist_name]
+    @artist = Artist.find params[:id]
+
+
+    spotify_artist_api = HTTParty.get URI.encode("https://api.spotify.com/v1/search?q=#{@artist.event_artist}&type=artist")
+    # ap spotify_artist_api
+    # IT'S WORKINGGGGGGGGG!!!!!!!!!!!!!!
+    
+    spotify_artist_id = spotify_artist_api["artists"]["items"][0]["id"]
+    # ap spotify_artist_id
+    top_tracks = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{spotify_artist_id}/top-tracks?country=US")
+    # ap top_tracks
+    @artist_top_tracks = top_tracks["tracks"]
+    @artist_spotify_image = spotify_artist_api['artists']['items'][0]['images'][0]["url"]
+    @artist_genres = spotify_artist_api['artists']['items'][0]['genres']
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 end

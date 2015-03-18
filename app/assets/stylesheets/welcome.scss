@@ -7,3 +7,26 @@
   font-weight: normal;
   font-style: normal;
 }
+
+img.spotify-artist-image {
+  // height: 1050px; 
+  width: 100%;
+  margin-top: -20px;
+  padding-top: 250px;
+  text-align:center;
+  background-attachment: relative;
+  background-position: center center;
+  min-height: 550px;
+  width: 100%;
+  opacity: .7;
+  
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

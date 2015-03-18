@@ -6,26 +6,30 @@
 %br
 .container
   .row.centered
-    - @venue_event_details.each do |event|  
+    - @venues.each do |event|  
       .col-sm-6
         .well
           %strong Artist Name
-          - event['performance'].each do |performance| 
+          - event.event_json['performance'].each do |performance| 
             = performance['displayName']
           %br
           %strong Venue Name
-          = event['venue']['displayName']
+          %br
+          = event.event_json['venue']['displayName']
           %br
           %strong Location
-          = event['location']['city']
+          = event.event_json['location']['city']
           %br
           %strong Event Name
-          = event['displayName']
+          = event.event_json['displayName']
           %br
           %strong Date
-          = event['start']['date']
+          = event.event_json['start']['date']
           %br
           %strong Event ID
-          = event['counter_id']
           %br
-          = link_to "View this event", event_path(event['counter_id']), :class => "venueeventshow"
+          = event.event_json['counter_id']
+          %br
+          = link_to "View this event", venue_path(event), :class => "venueeventshow"
+          %br
+    / = will_paginate @venues, :class => 'centered'

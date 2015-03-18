@@ -62,6 +62,20 @@ a {
   text-align: center;
   font-size: 40px;
 }
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #667;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #667;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: #667;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color: #667;
+}
 
 /* ==========================================================================
    General styles
@@ -121,6 +135,12 @@ li > a {
 }
 .resound-search {
   color: #1abc9c;
+}
+
+.songkick-logo {
+  height: 40px;
+  width: 40px;
+  margin-left: 90px;
 }
 
 
@@ -237,6 +257,9 @@ li > a {
 #footerwrap p {
 	color: #f2f2f2;
 	margin-left: 10px;
+}
+#footerwrap h1, h2 {
+  color: #1abc9c;
 }
 
 #workwrap {	

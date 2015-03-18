@@ -1,2 +1,69 @@
-%h1 Artists#show
-%p Find me in app/views/artists/show.html.haml
+%h1.centered
+  Artist Event Info!
+%h1.centered.resound.resound-search
+  = @artist.event_artist
+.centered
+  .well
+    %h1 Event Details
+    %strong Artist Name
+    %br
+    - @artist.event_json['performance'].each do |performance|
+      = performance['displayName']
+      %br
+      %br
+    %strong Venue Name
+    %br
+    = @artist.event_json['venue']['displayName']
+    %br
+    %br
+    %strong Location
+    %br
+    = @artist.event_json['location']['city']
+    %br
+    %br
+    %strong Event Name
+    %br
+    = @artist.event_json['displayName']
+    %br
+    %br
+    %strong Date
+    %br
+    = @artist.event_json['start']['date']
+    %br
+    %br
+    %strong Event ID
+    %br
+    = @artist.event_json['counter_id']
+    %br
+    %br
+    %strong View More details
+    %br
+    = link_to "View More Details on this Event through Songkick", @artist.event_json['uri'], :target => "_blank"
+    %br
+    = link_to "View More Details on this Venue through Songkick", @artist.event_json['venue']['uri'], :target => "_blank"
+    %br
+    %br
+    = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}&zoom=10&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}"
+%h3.centered
+  = "Here are #{@artist.event_artist.capitalize}'s top tracks, take a listen and see what you think!"
+%br
+%br
+.centered
+  - @artist_top_tracks.each do |track|
+    .col-sm-6
+      %i
+        = track['name']
+      %br
+      = link_to "Listen", track['preview_url'], :target => "_blank"
+      %br
+      %br
+- if @artist_genres.length > 0
+  %h3.centered
+    = "Related genres"
+    %br
+  .centered
+    - @artist_genres.each do |genre|
+      %br
+      %strong
+        = genre.capitalize
+%img.spotify-artist-image{ src: @artist_spotify_image }
