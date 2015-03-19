@@ -1,0 +1,72 @@
+#headerwrap
+  .container
+    .row
+      .col-lg-6.col-lg-offset-3
+        %h1.resound RESOUND.
+        %h4.resound Find music that RESOUNDS with you
+#works
+  .container
+    .row.centered.mt.mb
+      %h1.resound What we do
+      %br
+      %hr
+      %br
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("bass_dude.jpg", :class => "img-responsive")
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("girl.jpg", :class => 'img-responsive')
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("headphones.jpg", :class => 'img-responsive')
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("music_near_you.png", :class => 'img-responsive')
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("artists_you_love.png", :class => 'img-responsive')
+      .col-lg-4.col-md-4.col-sm-4.gallery
+        = image_tag("sample.png", :class => 'img-responsive')  
+      .col-lg-2.col-md-2.col-sm-2
+      .col-lg-8.col-md-8.col-sm-8.centered
+        %hr
+        %h4.mission-statement.resound The purpose of RESOUND is to provide a service to music listeners that allows them to find local upcoming music performances. To determine whether their music meshes with your musical taste, you can also sample some of their top songs!
+      .col-lg-2.col-md-2.col-sm-2
+#locationwrap
+  .container
+    .row
+      .col-lg-6.col-lg-offset-3
+        %strong
+          %h3 Enter your location (city, state OR city, country)        
+        %br
+        %input{:class => "user_location", :type => "text", :placeholder => "Location"}
+          %br
+          %br
+        %button.resoundbutton.location_search FIND YOUR MUSIC
+        %br
+        %br
+      %h2.resound LOCATION.
+#artistsearchwrap
+  .container
+    .row
+      .col-lg-6.col-lg-offset-3
+        %strong
+          %h3 Enter an artist to see their upcoming events!
+        %br
+        %input{:class => "artist_name", :type => "text", :placeholder => "Artist Name"}
+          %br
+          %br
+        %button.resoundbutton.artist_search SEARCH ARTIST EVENTS
+        %br
+        %br
+      %h2.resound ARTIST.
+#venuesearchwrap
+  .container
+    .row
+      .col-lg-6.col-lg-offset-3
+        %strong
+          %h3 Search a venue to see their upcoming events!
+        %br
+        %input{:class => "venue_name", :type => "text", :placeholder => "Venue Name"}
+          %br
+          %br
+        %button.resoundbutton.venue_search SEARCH VENUE EVENTS
+        %br
+        %br
+      %h2.resound VENUE.

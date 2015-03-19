@@ -45,7 +45,7 @@
     %br
     = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}&zoom=10&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}"
 %h3.centered
-  = "Here are #{@artist.event_artist.capitalize}'s top tracks, take a listen and see what you think!"
+  = "Here are #{@artist.event_artist.titleize}'s top tracks, take a listen and see what you think!"
 %br
 %br
 .centered
@@ -66,4 +66,12 @@
       %br
       %strong
         = genre.capitalize
-%img.spotify-artist-image{ src: @artist_spotify_image }
+%br
+- if @artist_spotify_image.length > 0
+  %img.spotify-artist-image{ src: @artist_spotify_image }
+%br
+.centered
+  %strong Related Artist:
+  %br
+  = @related_artists
+%br

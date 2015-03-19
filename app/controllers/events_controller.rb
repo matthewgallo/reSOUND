@@ -39,8 +39,9 @@ class EventsController < ApplicationController
       ap @location_performance_id
 
 
-
-      Event.create({ location_performance_id: @location_performance_id, event_location: @user_location, event_json: event })
+      if Event.where( location_performance_id: @location_performance_id ).length < 1
+        Event.create({ location_performance_id: @location_performance_id, event_location: @user_location, event_json: event })
+      end
     end
     @events = Event.where("event_location LIKE ?", "%#{params[:user_location]}%")
     # @events = Event.paginate(:page => params[:page], :per_page => 30)

@@ -32,16 +32,12 @@ class ArtistsController < ApplicationController
       # else 
       # search for it from the API.
       # end
-       # if @artist_performance_id.length > 0
-          # take what is already in the database
-       # else
-          # get it from the api
-       # end
-       
+
         ap @artist_performance_id
       
-        
-      Artist.create({ artist_performance_id: @artist_performance_id, event_artist: @artist_name, event_json: event })
+        if Artist.where(artist_performance_id: @artist_performance_id).length < 1
+          Artist.create({ artist_performance_id: @artist_performance_id, event_artist: @artist_name, event_json: event })
+        end 
     end
     @artists = Artist.where("event_artist LIKE ?", "%#{params[:artist_name]}%")
     # ap params[:q]
@@ -68,8 +64,10 @@ class ArtistsController < ApplicationController
     spotify_artist_id = spotify_artist_api["artists"]["items"][0]["id"]
     # ap spotify_artist_id
     top_tracks = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{spotify_artist_id}/top-tracks?country=US")
+    spotify_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{spotify_artist_id}/related-artists")
     # ap top_tracks
     @artist_top_tracks = top_tracks["tracks"]
+    @related_artists = spotify_related_artists['artists'][0]['name']
     @artist_spotify_image = spotify_artist_api['artists']['items'][0]['images'][0]["url"]
     @artist_genres = spotify_artist_api['artists']['items'][0]['genres']
     respond_to do |format|

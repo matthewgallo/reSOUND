@@ -21,6 +21,11 @@
     %br
     = @event.event_json['displayName']
     %br
+    %strong Time
+    %br
+    = @event.event_json['start']['time']
+    / .parse.strftime('%I:%M%p')
+    %br
     %strong Date
     %br
     = @event.event_json['start']['date']

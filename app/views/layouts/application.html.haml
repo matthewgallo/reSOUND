@@ -23,12 +23,14 @@
               %a{:href => "/", :class => "home"} Home
             %li
               %a{remote: true, :class => "aboutPage"} About
+              /= link_to "About", about_index_path
             %li
-              %a{:href => "#locationwrap", :class => "locationWrapper"} Location
+              = link_to "Location", "#locationwrap", :class => "locationWrapper"
             %li
-              %a{:href => "#artistsearchwrap", :class => "artistWrapper"} Artist
+              = link_to "Artist", "#artistsearchwrap", :class => "artistWrapper"
             %li
-              %a{:href => "#venuesearchwrap", :class => "venueWrapper"} Venue
+              = link_to "Venue", "#venuesearchwrap", :class => "venueWrapper"
+              
     .main-content
       = yield
     #social

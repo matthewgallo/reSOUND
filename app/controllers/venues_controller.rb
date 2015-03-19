@@ -24,17 +24,16 @@ class VenuesController < ApplicationController
       event_id = counter
       @venue_performance_id = event['id']
       
-      
+
       # If the event already exists in db,
       # don't create it (get it from API)
       # else 
       # search for it from the API.
       # end
 
-
-
-
-      Venue.create({ venue_performance_id: @venue_performance_id, event_venue: @venue_name, event_json: event })
+      if Venue.where( venue_performance_id: @venue_performance_id ).length < 1
+        Venue.create({ venue_performance_id: @venue_performance_id, event_venue: @venue_name, event_json: event })
+      end
     end
     @venues = Venue.where("event_venue LIKE ?", "%#{params[:venue_name]}%")
     
@@ -47,5 +46,6 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find params[:id]
+    @venue_event_time = @venue.event_json['start']['time']
   end
 end

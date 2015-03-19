@@ -4,10 +4,7 @@ $( document ).ready(function() {
 
    // Grab input of LOCATION search and perform AJAX request
    // Event index via AJAX
-   $('.location_search').click(function(e){
-    if(e.keyCode == 13){
-      $('.location_search').trigger('click');
-      }
+   $(document).on("click", ".location_search", function(){
     var city = $('.user_location').val();
       $.ajax({
         type: "GET",
@@ -15,18 +12,15 @@ $( document ).ready(function() {
         dataType: 'script',
         data: { user_location: city },
         success: function(){
-          $('html, body').animate({ scrollTop: 0 }, 'slow');
+          $('html, body').animate({ scrollTop: 0 }, 'slow').delay(1000);
         }
       });
    });
 
 
-
-
-
   // Grab input of ARTIST search and perform AJAX request
   // Artists index via AJAX
-  $('.artist_search').click(function(){
+  $(document).on("click", ".artist_search", function(){
     var artist = $('.artist_name').val();
       $.ajax({
         type: "GET",
@@ -34,14 +28,14 @@ $( document ).ready(function() {
         dataType: 'script',
         data: { artist_name: artist},
         success: function(){
-          $('html, body').animate({ scrollTop: 0 }, 'slow');
+          $('html, body').animate({ scrollTop: 0 }, 'slow').delay(1000);
         }
       });
    });
 
   // Grab input of VENUE search and perform AJAX request
   // Venues index via AJAX
-  $('.venue_search').click(function(){
+  $(document).on("click", '.venue_search', function(){
     var venue = $('.venue_name').val();
       $.ajax({
         type: "GET",
@@ -49,7 +43,7 @@ $( document ).ready(function() {
         dataType: 'script',
         data: { venue_name: venue },
         success: function(){
-          $('html, body').animate({ scrollTop: 0 }, 'slow');
+          $('html, body').animate({ scrollTop: 0 }, 'slow').delay(1000);
         }
       });
    });
@@ -69,22 +63,55 @@ $( document ).ready(function() {
       }
     });
   });
-// AJAX REQUESTS FOR SHOW PAGES
-  
 
   
 
-  // Upcoming LOCATION event's show page AJAX request
+  
+// NAV BAR LINKS
 
-  $('.well').on('click', '.artisteventshow', function() {
+  // Location Wrap Navbar Link
+  $('.locationWrapper').click(function(){
+    console.log("Render location wrap");
      $.ajax({
       type: 'GET',
-      url: '/artists/' + id,
+      url: '/' + "#locationwrap",
       dataType: "script",
       success: function(data) {
         $('html, body').animate({
-          scrollTop: $("#artistshow").offset().top
-          }, 1000);
+          scrollTop: $("#locationwrap").offset().top
+          }, 2000);
+        return false;
+        }
+      });
+    });
+
+  // Artist Wrap Navbar Link
+  $('.artistWrapper').click(function(){
+    console.log("Render artist wrap");
+     $.ajax({
+      type: 'GET',
+      url: '/' + "#artistsearchwrap",
+      dataType: "script",
+      success: function(data) {
+        $('html, body').animate({
+          scrollTop: $("#artistsearchwrap").offset().top
+          }, 2000);
+        return false;
+        }
+      });
+    });
+
+  // Venue Wrap Navbar Link
+  $('.venueWrapper').click(function(){
+    console.log("Render venue wrap");
+     $.ajax({
+      type: 'GET',
+      url: '/' + "#venuesearchwrap",
+      dataType: "script",
+      success: function(data) {
+        $('html, body').animate({
+          scrollTop: $("#venuesearchwrap").offset().top
+          }, 2000);
         return false;
         }
       });
