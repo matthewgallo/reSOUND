@@ -64,10 +64,16 @@ class ArtistsController < ApplicationController
     spotify_artist_id = spotify_artist_api["artists"]["items"][0]["id"]
     # ap spotify_artist_id
     top_tracks = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{spotify_artist_id}/top-tracks?country=US")
-    spotify_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{spotify_artist_id}/related-artists")
+    @spotify_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{spotify_artist_id}/related-artists")
     # ap top_tracks
     @artist_top_tracks = top_tracks["tracks"]
-    @related_artists = spotify_related_artists['artists'][0]['name']
+
+
+    @spotify_related_artists['artists'].each do |name|
+      @related_artists = name['name']
+    end
+    
+    # ap @related_artists
     @artist_spotify_image = spotify_artist_api['artists']['items'][0]['images'][0]["url"]
     @artist_genres = spotify_artist_api['artists']['items'][0]['genres']
     respond_to do |format|

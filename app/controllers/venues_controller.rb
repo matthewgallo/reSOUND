@@ -47,5 +47,24 @@ class VenuesController < ApplicationController
   def show
     @venue = Venue.find params[:id]
     @venue_event_time = @venue.event_json['start']['time']
+
+    venue_show_details = @venue
+    @venue_artist = venue_show_details['event_json']['performance'][0]['displayName']
+    ap @venue_artist
+
+    venue_artist_api = HTTParty.get URI.encode("https://api.spotify.com/v1/search?q=#{@venue_artist}&type=artist")
+    venue_artist_id = venue_artist_api['artists']['items'][0]['id']
+    ap venue_artist_id
+    venue_artist_top_tracks_api = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{venue_artist_id}/top-tracks?country=US")
+    @venue_artist_top_tracks = venue_artist_top_tracks_api['tracks']
+
+    @venue_artist_genres = venue_artist_api['artists']['items'][0]['genres']
+
+    @venue_artist_image = venue_artist_api['artists']['items'][0]['images'][0]['url']
+
+    @venue_related_artists_search = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{venue_artist_id}/related-artists")
+    @venue_related_artists_search['artists'].each do |name|
+      @venue_related_artists = name['name']
+    end
   end
 end

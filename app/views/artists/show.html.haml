@@ -43,7 +43,7 @@
     = link_to "View More Details on this Venue through Songkick", @artist.event_json['venue']['uri'], :target => "_blank"
     %br
     %br
-    = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}&zoom=10&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}"
+    = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}&zoom=14&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}"
 %h3.centered
   = "Here are #{@artist.event_artist.titleize}'s top tracks, take a listen and see what you think!"
 %br
@@ -67,11 +67,11 @@
       %strong
         = genre.capitalize
 %br
-- if @artist_spotify_image.length > 0
-  %img.spotify-artist-image{ src: @artist_spotify_image }
-%br
 .centered
   %strong Related Artist:
   %br
   = @related_artists
+%br
+- if @artist_spotify_image.length > 0
+  %img.spotify-artist-image{ src: @artist_spotify_image }
 %br

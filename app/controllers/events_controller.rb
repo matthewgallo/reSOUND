@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   def index
     # User's Location
-    p params[:user_location]
+    ap params[:user_location]
     @user_location = params[:user_location]
     
     location_api = HTTParty.get URI.encode("http://api.songkick.com/api/3.0/search/locations.json?query=#{@user_location}&apikey=QG143a2Qf7zybpnb")
@@ -60,22 +60,33 @@ class EventsController < ApplicationController
 
 
   def show
-    # @event_show = JSON.parse(@event_details)
+
     @event = Event.find params[:id]
-    # ap event_show
-    # @events = upcoming_events['resultsPage']['results']['event']
+    event_show_details = @event
+    @event_artist = event_show_details['event_json']['performance'][0]['displayName']
+    ap @event_artist
 
-    # @events.select{|obj| obj.id == params[:id]}
+    event_artist_api = HTTParty.get URI.encode("https://api.spotify.com/v1/search?q=#{@event_artist}&type=artist")
+    event_artist_id = event_artist_api['artists']['items'][0]['id']
+    # ap event_artist_id
+    event_artist_top_tracks = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{event_artist_id}/top-tracks?country=US")
+    # ap event_artist_top_tracks
+    @location_artist_top_tracks = event_artist_top_tracks["tracks"]
 
-    # artist_name = @event_details['performance'][0]['displayName']
-    # artist_api = HTTParty.get "https://api.spotify.com/v1/search?q=#{artist_name}&type=artist"
-    # artist_id = artist_api['artists']['items'][0]['id']
-    # ap artist_id
-    # artist_name = artist_api['artists']['items'][0]['name']
-    # ap artist_name
-    # artist_image = artist_api['artists']['items'][0]['images'][0]
-    # ap artist_image
+    @location_artist_genres = event_artist_api['artists']['items'][0]['genres']
+    
+    @location_artist_image = event_artist_api['artists']['items'][0]['images'][0]['url']
 
-    # @event = Event.find params[:counter_id]
+
+
+
+    @location_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{event_artist_id}/related-artists")
+    @location_related_artists['artists'].each do |name|
+      @event_related_artists = name['name']
+    end
+
+
+
+
   end
 end

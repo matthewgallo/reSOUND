@@ -41,4 +41,33 @@
     = link_to "View More Details on this Venue through Songkick", @event.event_json['venue']['uri'], :target => "_blank"
     %br
     = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@event.event_json['venue']['displayName']},#{@event.event_json['location']['city']}&zoom=14&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@event.event_json['venue']['displayName']},#{@event.event_json['location']['city']}"
-    / = link_to "Return to list of events"
+%h3.centered
+  = "Here are #{@event_artist.titleize}'s top tracks, take a listen and see what you think!"
+%br
+%br
+.centered
+  - @location_artist_top_tracks.each do |track|
+    .col-sm-6
+      %i
+        = track['name']
+      %br
+      = link_to "Listen", track['preview_url'], :target => "_blank"
+      %br
+      %br
+- if @location_artist_genres.length > 0
+  %h3.centered
+    = "Related Genres"
+    %br
+  .centered
+    - @location_artist_genres.each do |genre|
+      %br
+      %strong
+        = genre.capitalize
+.centered
+  %strong Related Artists:
+  %br
+  = @event_related_artists
+%br
+- if @location_artist_image.length > 0
+  %img.spotify-artist-image{:src => @location_artist_image }
+%br
