@@ -8,30 +8,37 @@
     - @venue.event_json['performance'].each do |performance|
       = performance['displayName']
     %br
+    %br
     %strong Venue Name
     %br
     = @venue.event_json['venue']['displayName']
+    %br
     %br
     %strong Location
     %br
     = @venue.event_json['location']['city']
     %br
+    %br
     %strong Event Name
     %br
     = @venue.event_json['displayName']
     %br
+    %br  
     %strong Time
     %br
     = @venue_event_time
     / .parse.strftime('%I:%M%p')
     %br
+    %br
     %strong Date
     %br
     = @venue.event_json['start']['date']
     %br
+    %br
     %strong Event ID
     %br
     = @venue.event_json['counter_id']
+    %br
     %br
     %strong View More details
     %br
@@ -39,12 +46,13 @@
     %br
     = link_to "View More Details on this Venue through Songkick", @venue.event_json['venue']['uri'], :target => "_blank"
     %br
+    %br
     = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@venue.event_json['venue']['displayName']},#{@venue.event_json['location']['city']}&zoom=14&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@venue.event_json['venue']['displayName']},#{@venue.event_json['location']['city']}"
 
 
 / Spotify Artist Info
 / Only show/search spotify api info, if artist is not nil
-- if @venue_artist != nil
+- if @venue_artist_id != nil
   %h3.centered
     = "Here are #{@venue_artist.titleize}'s top tracks, take a listen and see what you think!"
   %br
@@ -55,7 +63,8 @@
         %i
           = track['name']
         %br
-        = link_to "Listen", track['preview_url'], :target => "_blank"
+        %i.icon-unmute
+          = link_to 'Listen', track['preview_url'], :target => "_blank"
         %br
         %br
   - if @venue_artist_genres.length > 0
@@ -68,10 +77,16 @@
         %strong
           = genre.capitalize
   .centered
-    %strong Related Artists:
+    %h3.centered Related Artists
     %br
-    = @venue_related_artists
+    %strong
+      = @venue_related_artists
   %br
   - if @venue_artist_image.length > 0
-    %img.spotify-artist-image{ :src => @venue_artist_image }
+    %img.spotify-artist-image{:src => @venue_artist_image}
+  .centered
+    %i
+      = @venue.event_json['performance'][0]['displayName']
   %br
+- else 
+  %h3.centered No Spotify info for this artist.

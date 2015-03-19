@@ -1,35 +1,39 @@
-%h1.centered.resound
-  Upcoming Music events for
-%h1.centered.resound.resound-search
-  = @venue_name.titleize
-%br
-%br
-.container
-  .row.centered
-    - @venues.each do |event|  
-      .col-sm-6
-        .well
-          %strong Artist Name
-          - event.event_json['performance'].each do |performance| 
-            = performance['displayName']
-          %br
-          %strong Venue Name
-          %br
-          = event.event_json['venue']['displayName']
-          %br
-          %strong Location
-          = event.event_json['location']['city']
-          %br
-          %strong Event Name
-          = event.event_json['displayName']
-          %br
-          %strong Date
-          = event.event_json['start']['date']
-          %br
-          %strong Event ID
-          %br
-          = event.event_json['counter_id']
-          %br
-          = link_to "View this event", venue_path(event), :class => "venueeventshow"
-          %br
-    / = will_paginate @venues, :class => 'centered'
+- if @venue_id && @venue_event_details != nil
+  %h1.centered.resound
+    Upcoming Music events for
+  %h1.centered.resound.resound-search
+    = @venue_name.titleize
+  %br
+  %br
+  .container
+    .row.centered
+      - @venues.each do |event|  
+        .col-sm-6
+          .well
+            %strong Artist Name
+            - event.event_json['performance'].each do |performance| 
+              = performance['displayName']
+            %br
+            %strong Venue Name
+            %br
+            = event.event_json['venue']['displayName']
+            %br
+            %strong Location
+            = event.event_json['location']['city']
+            %br
+            %strong Event Name
+            = event.event_json['displayName']
+            %br
+            %strong Date
+            = event.event_json['start']['date']
+            %br
+            %strong Event ID
+            %br
+            = event.event_json['counter_id']
+            %br
+            = link_to "View this event", venue_path(event), :class => "venueeventshow"
+            %br
+      / = will_paginate @venues, :class => 'centered'
+- else
+  %h3.centered This venue does not have any upcoming events, check back soon! Thanks for using 
+  %h1.resound-error.centered RESOUND.

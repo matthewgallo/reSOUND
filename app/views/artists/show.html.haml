@@ -44,34 +44,43 @@
     %br
     %br
     = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}&zoom=14&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}"
-%h3.centered
-  = "Here are #{@artist.event_artist.titleize}'s top tracks, take a listen and see what you think!"
-%br
-%br
-.centered
-  - @artist_top_tracks.each do |track|
-    .col-sm-6
-      %i
-        = track['name']
-      %br
-      = link_to "Listen", track['preview_url'], :target => "_blank"
-      %br
-      %br
-- if @artist_genres.length > 0
+
+- if @spotify_artist_id != nil
   %h3.centered
-    = "Related genres"
-    %br
-  .centered
-    - @artist_genres.each do |genre|
-      %br
-      %strong
-        = genre.capitalize
-%br
-.centered
-  %strong Related Artist:
+    = "Here are #{@artist.event_artist.titleize}'s top tracks, take a listen and see what you think!"
   %br
-  = @related_artists
-%br
-- if @artist_spotify_image.length > 0
-  %img.spotify-artist-image{ src: @artist_spotify_image }
-%br
+  %br
+  .centered
+    - @artist_top_tracks.each do |track|
+      .col-sm-6
+        %i
+          = track['name']
+        %br
+        %i.icon-unmute
+          = link_to "Listen", track['preview_url'], :target => "_blank"
+        %br
+        %br
+  - if @artist_genres.length > 0
+    %h3.centered
+      = "Related genres"
+      %br
+    .centered
+      - @artist_genres.each do |genre|
+        %br
+        %strong
+          = genre.capitalize
+  %br
+  .centered
+    %h3.centered Related Artists
+    %br
+    %strong
+      = @related_artists
+  %br
+  - if @artist_spotify_image.length > 0
+    %img.spotify-artist-image{ :src => @artist_spotify_image }
+  .centered
+    %i
+      = @artist.event_json['performance'][0]['displayName']
+  %br
+- else
+  %h3.centered No Spotify info for this artist

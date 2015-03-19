@@ -9,30 +9,37 @@
     - @event.event_json['performance'].each do |performance|
       = performance['displayName']
       %br
+      %br
     %strong Venue Name
     %br
     = @event.event_json['venue']['displayName']
+    %br
     %br
     %strong Location
     %br
     = @event.event_json['location']['city']
     %br
+    %br
     %strong Event Name
     %br
     = @event.event_json['displayName']
+    %br
     %br
     %strong Time
     %br
     = @event.event_json['start']['time']
     / .parse.strftime('%I:%M%p')
     %br
+    %br
     %strong Date
     %br
     = @event.event_json['start']['date']
     %br
+    %br
     %strong Event ID
     %br
     = @event.event_json['counter_id']
+    %br
     %br
     %strong View More details
     %br
@@ -41,33 +48,43 @@
     = link_to "View More Details on this Venue through Songkick", @event.event_json['venue']['uri'], :target => "_blank"
     %br
     = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@event.event_json['venue']['displayName']},#{@event.event_json['location']['city']}&zoom=14&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@event.event_json['venue']['displayName']},#{@event.event_json['location']['city']}"
-%h3.centered
-  = "Here are #{@event_artist.titleize}'s top tracks, take a listen and see what you think!"
-%br
-%br
-.centered
-  - @location_artist_top_tracks.each do |track|
-    .col-sm-6
-      %i
-        = track['name']
-      %br
-      = link_to "Listen", track['preview_url'], :target => "_blank"
-      %br
-      %br
-- if @location_artist_genres.length > 0
+
+
+- if @event_artist_id != nil
   %h3.centered
-    = "Related Genres"
-    %br
-  .centered
-    - @location_artist_genres.each do |genre|
-      %br
-      %strong
-        = genre.capitalize
-.centered
-  %strong Related Artists:
+    = "Here are #{@event_artist.titleize}'s top tracks, take a listen and see what you think!"
   %br
-  = @event_related_artists
-%br
-- if @location_artist_image.length > 0
-  %img.spotify-artist-image{:src => @location_artist_image }
-%br
+  %br
+  .centered
+    - @location_artist_top_tracks.each do |track|
+      .col-sm-6
+        %i
+          = track['name']
+        %br
+        %i.icon-unmute
+          = link_to "Listen", track['preview_url'], :target => "_blank"
+        %br
+        %br
+  - if @location_artist_genres.length > 0
+    %h3.centered
+      = "Related Genres"
+      %br
+    .centered
+      - @location_artist_genres.each do |genre|
+        %br
+        %strong
+          = genre.capitalize
+  .centered
+    %h3.centered Related Artists
+    %br
+    %strong
+      = @event_related_artists
+  %br
+  - if @location_artist_image.length > 0
+    %img.spotify-artist-image{:src => @location_artist_image }
+  .centered
+    %i
+      = @event.event_json['performance'][0]['displayName']
+  %br
+- else
+  %h3.centered No Spotify info for this artist.
