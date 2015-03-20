@@ -60,9 +60,8 @@
       .col-sm-6
         %i
           = track['name']
-        %br
-        %i.icon-unmute
-          = link_to "Listen", track['preview_url'], :target => "_blank"
+        %br  
+        = link_to image_tag("spotify.png", :class => "spotify-listen"), track['preview_url'], :target => "_blank"
         %br
         %br
   - if @location_artist_genres.length > 0
@@ -79,9 +78,8 @@
     %br
     %strong
       = @event_related_artists
-  %br
-  - if @location_artist_image.length > 0
-    %img.spotify-artist-image{:src => @location_artist_image }
+  %br  
+  %img.spotify-artist-image{:src => @location_artist_image }
   .centered
     %i
       = @event.event_json['performance'][0]['displayName']

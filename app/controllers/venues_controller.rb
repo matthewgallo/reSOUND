@@ -60,7 +60,6 @@ class VenuesController < ApplicationController
     @venue_artist = venue_show_details['event_json']['performance'][0]['displayName']
 
     ap @venue_artist
-    ap @venue_artist_api
 
     @venue_artist_api = HTTParty.get URI.encode("https://api.spotify.com/v1/search?q=#{@venue_artist}&type=artist")
     @venue_artist_id = @venue_artist_api['artists']['items'][0].try(:[], 'id')
@@ -72,7 +71,11 @@ class VenuesController < ApplicationController
 
         @venue_artist_genres = @venue_artist_api['artists']['items'][0]['genres']
 
+        
+        @venue_artist_image = @venue_artist_api['artists']['items'][0]['images'][0].try(:[], 'url')
+        if @venue_artist_image != nil
         @venue_artist_image = @venue_artist_api['artists']['items'][0]['images'][0]['url']
+        end
 
         @venue_related_artists_search = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@venue_artist_id}/related-artists")
         @venue_related_artists_search['artists'].each do |name|

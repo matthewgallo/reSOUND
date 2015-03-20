@@ -83,8 +83,12 @@ class ArtistsController < ApplicationController
         @related_artists = name['name']
       end
 
+
+      @artist_spotify_image = spotify_artist_api['artists']['items'][0]['images'][0].try(:[], "url")
       # ap @related_artists
-      @artist_spotify_image = spotify_artist_api['artists']['items'][0]['images'][0]["url"]
+      if @artist_spotify_image != nil
+        @artist_spotify_image = spotify_artist_api['artists']['items'][0]['images'][0]["url"]
+      end
       @artist_genres = spotify_artist_api['artists']['items'][0]['genres']
     end
 

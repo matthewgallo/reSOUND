@@ -53,20 +53,20 @@
 / Spotify Artist Info
 / Only show/search spotify api info, if artist is not nil
 - if @venue_artist_id != nil
-  %h3.centered
-    = "Here are #{@venue_artist.titleize}'s top tracks, take a listen and see what you think!"
-  %br
-  %br
-  .centered
-    - @venue_artist_top_tracks.each do |track|
-      .col-sm-6
-        %i
-          = track['name']
-        %br
-        %i.icon-unmute
-          = link_to 'Listen', track['preview_url'], :target => "_blank"
-        %br
-        %br
+  - if @venue_artist_top_tracks.length > 0
+    %h3.centered
+      = "Here are #{@venue_artist.titleize}'s top tracks, take a listen and see what you think!"
+    %br
+    %br
+    .centered
+      - @venue_artist_top_tracks.each do |track|
+        .col-sm-6
+          %i
+            = track['name']
+          %br
+          = link_to image_tag("spotify.png", :class => "spotify-listen"), track['preview_url'], :target => "_blank"
+          %br
+          %br
   - if @venue_artist_genres.length > 0
     %h3.centered
       = "Related Genres"
@@ -81,9 +81,8 @@
     %br
     %strong
       = @venue_related_artists
-  %br
-  - if @venue_artist_image.length > 0
-    %img.spotify-artist-image{:src => @venue_artist_image}
+  %br  
+  %img.spotify-artist-image{:src => @venue_artist_image}
   .centered
     %i
       = @venue.event_json['performance'][0]['displayName']

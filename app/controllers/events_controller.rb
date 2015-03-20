@@ -88,7 +88,11 @@ class EventsController < ApplicationController
 
       @location_artist_genres = event_artist_api['artists']['items'][0]['genres']
       
-      @location_artist_image = event_artist_api['artists']['items'][0]['images'][0]['url']
+      @location_artist_image = event_artist_api['artists']['items'][0]['images'][0].try(:[], 'url')
+
+      if @location_artist_image != nil
+        @location_artist_image = event_artist_api['artists']['items'][0]['images'][0]['url']
+      end
 
 
       @location_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@event_artist_id}/related-artists")
