@@ -46,13 +46,8 @@
       });
    });
 
-
-
 $( document ).ready(function() {
-   
-
-
-
+  
   // About index via AJAX
   $('.aboutPage').click(function(){
     $.ajax({
@@ -83,7 +78,7 @@ $( document ).ready(function() {
       success: function(data) {
         $('html, body').animate({
           scrollTop: $("#locationwrap").offset().top
-          }, 2000);
+          }, 1000);
         return false;
         }
       });
@@ -99,7 +94,7 @@ $( document ).ready(function() {
       success: function(data) {
         $('html, body').animate({
           scrollTop: $("#artistsearchwrap").offset().top
-          }, 2000);
+          }, 1000);
         return false;
         }
       });
@@ -115,7 +110,7 @@ $( document ).ready(function() {
       success: function(data) {
         $('html, body').animate({
           scrollTop: $("#venuesearchwrap").offset().top
-          }, 2000);
+          }, 1000);
         return false;
         }
       });
