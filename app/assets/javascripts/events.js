@@ -1,5 +1,3 @@
-$( document ).ready(function() {
-   
 // AJAX REQUESTS FOR INDEX PAGES
 
    // Grab input of LOCATION search and perform AJAX request
@@ -47,6 +45,12 @@ $( document ).ready(function() {
         }
       });
    });
+
+
+
+$( document ).ready(function() {
+   
+
 
 
   // About index via AJAX

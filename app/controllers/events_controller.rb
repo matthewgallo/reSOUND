@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     
     location_api = HTTParty.get URI.encode("http://api.songkick.com/api/3.0/search/locations.json?query=#{@user_location}&apikey=QG143a2Qf7zybpnb")
     puts "You're searching for #{@user_location}:".upcase
-    ap location_api
+    # ap location_api
     # DISPLAYS JSON DATA LOCATION_ID!!!! WOOOOOO
 
 
