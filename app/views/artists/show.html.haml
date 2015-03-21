@@ -46,19 +46,20 @@
     = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}&zoom=14&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}"
 
 - if @spotify_artist_id != nil
-  %h3.centered
-    = "Here are #{@artist.event_artist.titleize}'s top tracks, take a listen and see what you think!"
-  %br
-  %br
-  .centered
-    - @artist_top_tracks.each do |track|
-      .col-sm-6
-        %i
-          = track['name']
-        %br  
-        = link_to image_tag("spotify.png", :class => "spotify-listen"), track['preview_url'], :target => "_blank"
-        %br
-        %br
+  - if @artist_top_tracks.length > 0
+    %h3.centered
+      = "Here are #{@artist.event_artist.titleize}'s top tracks, take a listen and see what you think!"
+    %br
+    %br
+    .centered
+      - @artist_top_tracks.each do |track|
+        .col-sm-6
+          %i
+            = track['name']
+          %br  
+          = link_to image_tag("spotify.png", :class => "spotify-listen"), track['preview_url'], :target => "_blank"
+          %br
+          %br
   - if @artist_genres.length > 0
     %h3.centered
       = "Related genres"
@@ -75,10 +76,10 @@
     %strong
       = @related_artists
   %br
-  %img.spotify-artist-image{ :src => @artist_spotify_image }
   .centered
-    %i
-      = @artist.event_json['performance'][0]['displayName']
+    %h4
+      = @artist.event_artist
+  %img.spotify-artist-image{ :src => @artist_spotify_image }
   %br
 - else
   %h3.centered No Spotify info for this artist

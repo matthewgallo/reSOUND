@@ -16,7 +16,7 @@ class ArtistsController < ApplicationController
     
       @artist_event_details = artist_events["resultsPage"]["results"]["event"]
     
-      ap @artist_event_details
+      # ap @artist_event_details
 
     
       # If the artist has upcoming events do all this stuff.

@@ -149,6 +149,19 @@ li > a {
   padding: 50px;
   color: #1abc9c;
 }
+
+
+.logos {
+  width: 70%;
+  height: 70%;
+}
+.about-pics {
+  opacity: .7;
+  width:90%;
+  height: 90%;
+}
+
+
 /* ==========================================================================
    Wrap Sections
    ========================================================================== */
@@ -250,7 +263,8 @@ li > a {
 }
 
 #social i:hover {
-	color: #1abc9c
+	color: #1abc9c;
+  text-decoration: none;
 }
 
 #footerwrap {

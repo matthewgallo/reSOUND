@@ -51,19 +51,20 @@
 
 
 - if @event_artist_id != nil
-  %h3.centered
-    = "Here are #{@event_artist.titleize}'s top tracks, take a listen and see what you think!"
-  %br
-  %br
-  .centered
-    - @location_artist_top_tracks.each do |track|
-      .col-sm-6
-        %i
-          = track['name']
-        %br  
-        = link_to image_tag("spotify.png", :class => "spotify-listen"), track['preview_url'], :target => "_blank"
-        %br
-        %br
+  - if @location_artist_top_tracks.length > 0
+    %h3.centered
+      = "Here are #{@event_artist.titleize}'s top tracks, take a listen and see what you think!"
+    %br
+    %br
+    .centered  
+      - @location_artist_top_tracks.each do |track|
+        .col-sm-6
+          %i
+            = track['name']
+          %br  
+          = link_to image_tag("spotify.png", :class => "spotify-listen"), track['preview_url'], :target => "_blank"
+          %br
+          %br
   - if @location_artist_genres.length > 0
     %h3.centered
       = "Related Genres"
@@ -78,11 +79,11 @@
     %br
     %strong
       = @event_related_artists
-  %br  
-  %img.spotify-artist-image{:src => @location_artist_image }
+  %br
   .centered
-    %i
+    %h4
       = @event.event_json['performance'][0]['displayName']
+  %img.spotify-artist-image{:src => @location_artist_image }
   %br
 - else
   %h3.centered No Spotify info for this artist.

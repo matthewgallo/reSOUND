@@ -8,7 +8,7 @@ class VenuesController < ApplicationController
     puts "You're searching for #{@venue_name}:".upcase
 
     # DISPLAYS JSON DATA VENUE ID!!!!!
-
+    # Only if the venue exists in the songkick api database.
     if venue_api["resultsPage"]["totalEntries"] > 0
       @venue_id = venue_api["resultsPage"]["results"]["venue"][0]["id"]
       ap @venue_id
@@ -16,7 +16,7 @@ class VenuesController < ApplicationController
       venue_events = HTTParty.get URI.encode("http://api.songkick.com/api/3.0/venues/#{@venue_id}/calendar.json?apikey=QG143a2Qf7zybpnb")
       @venue_event_details = venue_events["resultsPage"]["results"]["event"]
 
-
+      # Only if the venue has upcoming events.
       if @venue_event_details != nil
         @venue_lat = @venue_event_details[0]['venue']['lat']
         @venue_lng = @venue_event_details[0]['venue']['lng']
@@ -64,7 +64,7 @@ class VenuesController < ApplicationController
     @venue_artist_api = HTTParty.get URI.encode("https://api.spotify.com/v1/search?q=#{@venue_artist}&type=artist")
     @venue_artist_id = @venue_artist_api['artists']['items'][0].try(:[], 'id')
     ap @venue_artist_id
-
+      # Only if the artist has spotify info.
       if @venue_artist_id != nil
         venue_artist_top_tracks_api = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@venue_artist_id}/top-tracks?country=US")
         @venue_artist_top_tracks = venue_artist_top_tracks_api['tracks']

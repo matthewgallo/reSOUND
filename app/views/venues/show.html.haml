@@ -81,11 +81,11 @@
     %br
     %strong
       = @venue_related_artists
-  %br  
-  %img.spotify-artist-image{:src => @venue_artist_image}
+  %br
   .centered
-    %i
-      = @venue.event_json['performance'][0]['displayName']
+    %h4
+      = @venue.event_json['performance'][0]['displayName'] 
+  %img.spotify-artist-image{:src => @venue_artist_image}
   %br
 - else 
   %h3.centered No Spotify info for this artist.

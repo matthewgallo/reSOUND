@@ -3,13 +3,13 @@ require 'rails_helper'
 describe EventsController do
   let(:event) { Event.create({ user_location: "Charleston, SC", location_performance_id: "1", event_location: "Charleston, SC", event_json: @event_details }) }
 
-  describe "GET #index" do
-    it "should get a collection of upcoming events based on the given location" do
-        get :index
-        expect(assigns(:event)).not_to eq(nil)
-        expect(assigns(:event)).to eq([])
-    end
-  end
+  # describe "GET #index" do
+  #   it "should get a collection of upcoming events based on the given location" do
+  #       get :index
+  #       expect(assigns(:event)).not_to eq(nil)
+  #       expect(assigns(:event)).to eq([])
+  #   end
+  # end
 
 
   # describe "GET #show" do
