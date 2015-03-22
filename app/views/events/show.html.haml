@@ -81,8 +81,10 @@
       %br
       %strong
         - @location_related_artists['artists'].each do |related_artist|
-          = related_artist['name']
-          %br
+          .col-sm-4
+            %i
+              = related_artist['name']
+            %br
       %br
     %br
   .container
