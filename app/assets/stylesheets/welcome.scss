@@ -8,6 +8,9 @@
   font-style: normal;
 }
 
+
+// $related-artists-color: rgba(gray, 0.5);
+
 img.spotify-artist-image {
   width: 100%;
   margin-top: 20px;
@@ -19,6 +22,33 @@ img.spotify-artist-image {
   display: block;
   margin: auto;
 }
+
+// .related-container {
+//   position: relative;
+// }
+
+// img.related-artist-image-background {
+//   width: 200px;
+//   height: 200px;
+//   opacity: .8;
+//   display: block;
+//   margin: auto;
+//   position: absolute;
+//   z-index: 1
+// }
+
+
+// img.related-artist-image {
+//   width: 180px;
+//   height: 180px;
+//   background: transparentize(gray, .9);
+//   border-radius: 50%;
+//   opacity: .5;
+//   display: block;
+//   margin: auto;
+// }
+
+
 
 img.spotify-listen {
   max-height: 50%;

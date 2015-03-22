@@ -76,12 +76,15 @@
         %strong
           = genre.capitalize
   %br
-  - if @related_artists.length > 0
+  - if @spotify_related_artists != nil
     .centered
-      %h3.centered Related Artists
+      %h3 Related Artists
       %br
       %strong
-        = @related_artists
+        - @spotify_related_artists['artists'].each do |related_artist|
+          = related_artist['name']
+          %br
+      %br
     %br
   .container
     .row

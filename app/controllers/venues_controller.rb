@@ -77,13 +77,11 @@ class VenuesController < ApplicationController
         @venue_artist_image = @venue_artist_api['artists']['items'][0]['images'][0]['url']
         end
 
-        @venue_related_artists_search = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@venue_artist_id}/related-artists")
-       
-          @venue_related_artists_search['artists'].each do |name|
-            @venue_related_artists = name['name']
+        @venue_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@venue_artist_id}/related-artists")
+        
+          if @venue_related_artists != nil
+            @venue_related_artists['artists'][0]['name']
           end
-       
       end
-
   end
 end

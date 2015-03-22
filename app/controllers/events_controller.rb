@@ -94,9 +94,10 @@ class EventsController < ApplicationController
 
       @location_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@event_artist_id}/related-artists")
       
-        @location_related_artists['artists'].each do |name|
-          @event_related_artists = name['name']
-        end
+      if @location_related_artists != nil
+        @location_related_artists['artists'][0]['name']
+      end
+        
       
       
     end
