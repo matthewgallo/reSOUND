@@ -77,12 +77,12 @@ class ArtistsController < ApplicationController
       @spotify_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@spotify_artist_id}/related-artists")
       # ap top_tracks
       @artist_top_tracks = top_tracks["tracks"]
-
-
-      @spotify_related_artists['artists'].each do |name|
-        @related_artists = name['name']
-      end
-
+      
+      
+        @spotify_related_artists['artists'].each do |name|
+          @related_artists = name['name']
+        end
+      
 
       @artist_spotify_image = spotify_artist_api['artists']['items'][0]['images'][0].try(:[], "url")
       # ap @related_artists

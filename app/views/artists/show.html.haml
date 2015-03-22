@@ -26,6 +26,12 @@
     = @artist.event_json['displayName']
     %br
     %br
+    - if @artist.event_json['start']['time'] != nil
+      %strong Time
+      %br
+      = @artist.event_json['start']['time']
+      %br
+      %br
     %strong Date
     %br
     = @artist.event_json['start']['date']
@@ -70,13 +76,19 @@
         %strong
           = genre.capitalize
   %br
-  .centered
-    %h3.centered Related Artists
+  - if @related_artists.length > 0
+    .centered
+      %h3.centered Related Artists
+      %br
+      %strong
+        = @related_artists
     %br
-    %strong
-      = @related_artists
-  %br
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2
+        %hr
   .centered
+    %br
     %h4
       = @artist.event_artist
   %img.spotify-artist-image{ :src => @artist_spotify_image }

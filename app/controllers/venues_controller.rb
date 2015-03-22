@@ -78,9 +78,11 @@ class VenuesController < ApplicationController
         end
 
         @venue_related_artists_search = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@venue_artist_id}/related-artists")
-        @venue_related_artists_search['artists'].each do |name|
-          @venue_related_artists = name['name']
-        end
+       
+          @venue_related_artists_search['artists'].each do |name|
+            @venue_related_artists = name['name']
+          end
+       
       end
 
   end

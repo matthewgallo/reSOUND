@@ -25,12 +25,13 @@
     = @event.event_json['displayName']
     %br
     %br
-    %strong Time
-    %br
-    = @event.event_json['start']['time']
-    / .parse.strftime('%I:%M%p')
-    %br
-    %br
+    - if @event.event_json['start']['time']
+      %strong Time
+      %br
+      = @event.event_json['start']['time']
+      / .parse.strftime('%I:%M%p')
+      %br
+      %br
     %strong Date
     %br
     = @event.event_json['start']['date']
@@ -74,13 +75,19 @@
         %br
         %strong
           = genre.capitalize
+  - if @location_related_artists.length > 0
+    .centered
+      %h3 Related Artists
+      %br
+      %strong
+        = @event_related_artists
+      %br
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2
+        %hr
   .centered
-    %h3.centered Related Artists
     %br
-    %strong
-      = @event_related_artists
-  %br
-  .centered
     %h4
       = @event.event_json['performance'][0]['displayName']
   %img.spotify-artist-image{:src => @location_artist_image }

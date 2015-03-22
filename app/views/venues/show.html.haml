@@ -23,13 +23,14 @@
     %br
     = @venue.event_json['displayName']
     %br
-    %br  
-    %strong Time
     %br
-    = @venue_event_time
-    / .parse.strftime('%I:%M%p')
-    %br
-    %br
+    - if @venue_event_time != nil
+      %strong Time
+      %br
+      = @venue_event_time
+      / .parse.strftime('%I:%M%p')
+      %br
+      %br
     %strong Date
     %br
     = @venue.event_json['start']['date']
@@ -76,13 +77,19 @@
         %br
         %strong
           = genre.capitalize
-  .centered
-    %h3.centered Related Artists
+  - if @venue_related_artists.length > 0
+    .centered
+      %h3.centered Related Artists
+      %br
+      %strong
+        = @venue_related_artists
     %br
-    %strong
-      = @venue_related_artists
-  %br
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2
+        %hr
   .centered
+    %br
     %h4
       = @venue.event_json['performance'][0]['displayName'] 
   %img.spotify-artist-image{:src => @venue_artist_image}
