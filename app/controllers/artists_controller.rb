@@ -74,12 +74,17 @@ class ArtistsController < ApplicationController
 
     if @spotify_artist_id != nil
       top_tracks = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@spotify_artist_id}/top-tracks?country=US")
-      @spotify_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@spotify_artist_id}/related-artists")
+      
       # ap top_tracks
       @artist_top_tracks = top_tracks["tracks"]
 
-      if @spotify_related_artists != nil
-        @spotify_related_artists['artists'][0]['name']
+
+
+      # Related Artists
+      @spotify_related_artists_api = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@spotify_artist_id}/related-artists")
+
+      if @spotify_related_artists_api.length > 0
+        @artist_related_artists = @spotify_related_artists_api
       end
 
       # Echonest artist bio

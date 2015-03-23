@@ -52,6 +52,9 @@
     = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}&zoom=14&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}"
 
 - if @spotify_artist_id != nil
+  %h1.centered.resound.resound-search
+    Artist Details
+  %br
   - if @artist_top_tracks.length > 0
     %h3.centered
       = "Here are #{@artist.event_artist.titleize}'s top tracks, take a listen and see what you think!"
@@ -91,13 +94,13 @@
           %strong
             = genre.capitalize
   %br
-  - if @spotify_related_artists != nil
+  - if @artist_related_artists != nil
     .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
       .centered
         %h3 Related Artists
         %br
         %strong
-          - @spotify_related_artists['artists'].each do |related_artist|
+          - @artist_related_artists['artists'].each do |related_artist|
             .col-sm-4
               %i
                 = related_artist['name']

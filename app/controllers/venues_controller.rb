@@ -78,10 +78,12 @@ class VenuesController < ApplicationController
         @venue_artist_image = @venue_artist_api['artists']['items'][0]['images'][0]['url']
         end
 
-        @venue_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@venue_artist_id}/related-artists")
 
-          if @venue_related_artists != nil
-            @venue_related_artists['artists'][0]['name']
+        # Related Artists
+        @venue_related_artists_api = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@venue_artist_id}/related-artists")
+
+          if @venue_related_artists_api.length > 0
+            @venue_related_artists = @venue_related_artists_api
           end
 
         # Echonest artist bio
@@ -89,8 +91,6 @@ class VenuesController < ApplicationController
          @resound_venue_artist_bio = @venue_artist_bio['response']['biographies'][0]['text']
          @resound_venue_artist_bio_url = @venue_artist_bio['response']['biographies'][0]['url']
          @resound_venue_artist_bio[0..500]
-
-
       end
   end
 end

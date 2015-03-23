@@ -54,6 +54,8 @@
 / Spotify Artist Info
 / Only show/search spotify api info, if artist is not nil
 - if @venue_artist_id != nil
+  %h1.centered.resound.resound-search
+    Artist Details
   - if @venue_artist_top_tracks.length > 0
     %h3.centered
       = "Here are #{@venue_artist.titleize}'s top tracks, take a listen and see what you think!"
