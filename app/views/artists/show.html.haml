@@ -73,16 +73,17 @@
     .row
       .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
         %hr
-  - if @resound_artist_bio != nil
-    %h3.centered Biography
-    .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
-      .centered  
-        = @resound_artist_bio[0..400]
-        = "..."
+  - if @artist_bio_api.length > 0
+    -if @resound_artist_bio != nil
+      %h3.centered Biography
+      .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
+        .centered  
+          = @resound_artist_bio[0..400]
+          = "..."
+          %br
+          = link_to "See full artist bio", @resound_artist_bio_url, :target => "_blank"
+          %br
         %br
-        = link_to "See full artist bio", @resound_artist_bio_url, :target => "_blank"
-        %br
-      %br
   - if @artist_genres.length > 0
     .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
       %h3.centered

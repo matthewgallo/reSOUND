@@ -86,11 +86,18 @@ class VenuesController < ApplicationController
             @venue_related_artists = @venue_related_artists_api
           end
 
-        # Echonest artist bio
-        @venue_artist_bio = HTTParty.get URI.encode("http://developer.echonest.com/api/v4/artist/biographies?api_key=NHTNIAJPP3USAIFB6&id=spotify:artist:#{@venue_artist_id}&format=json")
-         @resound_venue_artist_bio = @venue_artist_bio['response']['biographies'][0]['text']
-         @resound_venue_artist_bio_url = @venue_artist_bio['response']['biographies'][0]['url']
-         @resound_venue_artist_bio[0..500]
+        # Artist bio
+        @venue_artist_bio_api = HTTParty.get URI.encode("http://developer.echonest.com/api/v4/artist/biographies?api_key=NHTNIAJPP3USAIFB6&id=spotify:artist:#{@venue_artist_id}&format=json")
+        if @venue_artist_bio_api.length > 0
+          
+
+            @resound_venue_artist_bio = @venue_artist_bio_api['response']['biographies'].try(:[], 0).try(:[], 'text')
+            @resound_venue_artist_bio_url = @venue_artist_bio_api['response']['biographies'].try(:[], 0).try(:[], 'url')
+            # ap @resound_venue_artist_bio[0..500]
+            ap @venue_artist_bio_api
+            ap @resound_venue_artist_bio
+        end
+
       end
   end
 end

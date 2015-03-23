@@ -100,6 +100,17 @@ class EventsController < ApplicationController
       if @location_related_artists_api.length > 0
         @related_artists = @location_related_artists_api
       end
+
+      # Artist bio
+        @event_artist_bio_api = HTTParty.get URI.encode("http://developer.echonest.com/api/v4/artist/biographies?api_key=NHTNIAJPP3USAIFB6&id=spotify:artist:#{@event_artist_id}&format=json")
+        if @event_artist_bio_api.length > 0
+          
+
+            @resound_event_artist_bio = @event_artist_bio_api['response']['biographies'].try(:[], 0).try(:[], 'text')
+            @resound_event_artist_bio_url = @event_artist_bio_api['response']['biographies'].try(:[], 0).try(:[], 'url')
+
+        end
+
     end
   end
 end
