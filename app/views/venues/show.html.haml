@@ -3,6 +3,7 @@
   = @venue.event_json['venue']['displayName']
 .centered
   .well
+    %h1 Event Details
     %strong Artist Name
     %br
     - @venue.event_json['performance'].each do |performance|

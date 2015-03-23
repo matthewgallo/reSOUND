@@ -4,6 +4,7 @@
   = @event.event_json['location']['city']
 .centered
   .well
+    %h1 Event Details
     %strong Artist Name
     %br
     - @event.event_json['performance'].each do |performance|
@@ -68,6 +69,10 @@
           = link_to image_tag("spotify.png", :class => "spotify-listen"), track['preview_url'], :target => "_blank"
           %br
           %br
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
+        %hr
   - if @event_artist_bio_api.length > 0
     - if @resound_event_artist_bio != nil
       %h3.centered Biography
