@@ -81,7 +81,15 @@ class ArtistsController < ApplicationController
       if @spotify_related_artists != nil
         @spotify_related_artists['artists'][0]['name']
       end
+
+      # Echonest artist bio
+        @artist_bio = HTTParty.get URI.encode("http://developer.echonest.com/api/v4/artist/biographies?api_key=NHTNIAJPP3USAIFB6&id=spotify:artist:#{@spotify_artist_id}&format=json")
+         @resound_artist_bio = @artist_bio['response']['biographies'][0]['text']
+         @resound_artist_bio_url = @artist_bio['response']['biographies'][0]['url']
+         @resound_artist_bio[0..500]
       
+
+
 
       @artist_spotify_image = spotify_artist_api['artists']['items'][0]['images'][0].try(:[], "url")
       # ap @related_artists

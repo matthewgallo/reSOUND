@@ -1,4 +1,4 @@
-%h1.centered Venue Event info!
+%h1.centered Venue
 %h1.centered.resound.resound-search
   = @venue.event_json['venue']['displayName']
 .centered
@@ -68,30 +68,46 @@
           = link_to image_tag("spotify.png", :class => "spotify-listen"), track['preview_url'], :target => "_blank"
           %br
           %br
-  - if @venue_artist_genres.length > 0
-    %h3.centered
-      = "Related Genres"
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
+        %hr
+  - if @resound_venue_artist_bio != nil
+    %h3.centered Biography
+    .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
+      .centered  
+        = @resound_venue_artist_bio[0..400]
+        = "..."
+        %br
+        = link_to "See full artist bio", @resound_venue_artist_bio_url, :target => "_blank"
+        %br
       %br
-    .centered
-      - @venue_artist_genres.each do |genre|
+  - if @venue_artist_genres.length > 0
+    .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
+      %h3.centered
+        = "Related Genres"
+        %br
+      .centered
+        - @venue_artist_genres.each do |genre|
+          %br
+          %strong
+            = genre.capitalize
+  - if @venue_related_artists != nil
+    .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
+      .centered
+        %h3 Related Artists
         %br
         %strong
-          = genre.capitalize
-  - if @venue_related_artists != nil
-    .centered
-      %h3 Related Artists
-      %br
-      %strong
-        - @venue_related_artists['artists'].each do |related_artist|
-          .col-sm-4
-            %i
-              = related_artist['name']
-            %br
+          - @venue_related_artists['artists'].each do |related_artist|
+            .col-sm-4
+              %i
+                = related_artist['name']
+              %br
       %br
     %br
   .container
     .row
-      .col-lg-8.col-lg-offset-2
+      .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
         %hr
   .centered
     %br

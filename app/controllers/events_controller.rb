@@ -71,6 +71,7 @@ class EventsController < ApplicationController
 
     @event = Event.find params[:id]
     event_show_details = @event
+    
     @event_artist = event_show_details['event_json']['performance'][0]['displayName']
     ap @event_artist
 
@@ -97,13 +98,6 @@ class EventsController < ApplicationController
       if @location_related_artists != nil
         @location_related_artists['artists'][0]['name']
       end
-        
-      
-      
     end
-
-
-
-
   end
 end

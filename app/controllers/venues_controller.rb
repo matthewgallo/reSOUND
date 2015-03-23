@@ -57,6 +57,7 @@ class VenuesController < ApplicationController
     @venue_event_time = @venue.event_json['start']['time']
 
     venue_show_details = @venue
+    
     @venue_artist = venue_show_details['event_json']['performance'][0]['displayName']
 
     ap @venue_artist
@@ -78,10 +79,18 @@ class VenuesController < ApplicationController
         end
 
         @venue_related_artists = HTTParty.get URI.encode("https://api.spotify.com/v1/artists/#{@venue_artist_id}/related-artists")
-        
+
           if @venue_related_artists != nil
             @venue_related_artists['artists'][0]['name']
           end
+
+        # Echonest artist bio
+        @venue_artist_bio = HTTParty.get URI.encode("http://developer.echonest.com/api/v4/artist/biographies?api_key=NHTNIAJPP3USAIFB6&id=spotify:artist:#{@venue_artist_id}&format=json")
+         @resound_venue_artist_bio = @venue_artist_bio['response']['biographies'][0]['text']
+         @resound_venue_artist_bio_url = @venue_artist_bio['response']['biographies'][0]['url']
+         @resound_venue_artist_bio[0..500]
+
+
       end
   end
 end

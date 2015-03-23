@@ -1,5 +1,5 @@
 %h1.centered
-  Location Event info!
+  Location
 %h1.centered.resound.resound-search
   = @event.event_json['location']['city']
 .centered
@@ -67,29 +67,32 @@
           %br
           %br
   - if @location_artist_genres.length > 0
-    %h3.centered
-      = "Related Genres"
-      %br
-    .centered
-      - @location_artist_genres.each do |genre|
+    .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
+      %h3.centered
+        = "Related Genres"
+        %br
+      .centered
+        - @location_artist_genres.each do |genre|
+          %br
+          %strong
+            = genre.capitalize
+  %br
+  - if @location_related_artists != nil
+    .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
+      .centered
+        %h3 Related Artists
         %br
         %strong
-          = genre.capitalize
-  - if @location_related_artists != nil
-    .centered
-      %h3 Related Artists
-      %br
-      %strong
-        - @location_related_artists['artists'].each do |related_artist|
-          .col-sm-4
-            %i
-              = related_artist['name']
-            %br
-      %br
+          - @location_related_artists['artists'].each do |related_artist|
+            .col-sm-4
+              %i
+                = related_artist['name']
+              %br
+        %br
     %br
   .container
     .row
-      .col-lg-8.col-lg-offset-2
+      .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
         %hr
   .centered
     %br
