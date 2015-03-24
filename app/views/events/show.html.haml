@@ -29,8 +29,7 @@
     - if @event.event_json['start']['time']
       %strong Time
       %br
-      = @event.event_json['start']['time']
-      / .parse.strftime('%I:%M%p')
+      = Time.parse(@event.event_json['start']['time']).strftime("%I:%M%p")
       %br
       %br
     %strong Date

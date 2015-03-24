@@ -28,8 +28,7 @@
     - if @venue_event_time != nil
       %strong Time
       %br
-      = @venue_event_time
-      / .parse.strftime('%I:%M%p')
+      = Time.parse(@venue_event_time).strftime('%I:%M%p')
       %br
       %br
     %strong Date

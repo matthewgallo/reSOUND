@@ -29,7 +29,7 @@
     - if @artist.event_json['start']['time'] != nil
       %strong Time
       %br
-      = @artist.event_json['start']['time']
+      = Time.parse(@artist.event_json['start']['time']).strftime("%I:%M%p")
       %br
       %br
     %strong Date
