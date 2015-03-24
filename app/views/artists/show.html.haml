@@ -34,7 +34,7 @@
       %br
     %strong Date
     %br
-    = @artist.event_json['start']['date']
+    = Date.parse(@artist.event_json['start']['date']).strftime("%b %d, %Y")
     %br
     %br
     %strong Event ID

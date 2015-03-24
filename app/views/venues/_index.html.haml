@@ -24,7 +24,7 @@
             = event.event_json['displayName']
             %br
             %strong Date
-            = event.event_json['start']['date']
+            = Date.parse(event.event_json['start']['date']).strftime("%b %d, %Y")
             %br
             %strong Event ID
             %br

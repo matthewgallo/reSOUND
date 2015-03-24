@@ -33,7 +33,7 @@
       %br
     %strong Date
     %br
-    = @venue.event_json['start']['date']
+    = Date.parse(@venue.event_json['start']['date']).strftime("%b %d, %Y")
     %br
     %br
     %strong Event ID
