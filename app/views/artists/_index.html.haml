@@ -26,9 +26,6 @@
             %strong Date
             = Date.parse(event.event_json['start']['date']).strftime("%b %d, %Y")
             %br
-            %strong Event ID
-            = event.event_json['counter_id']
-            %br
             = link_to "View this event", artist_path(event), :class => "artisteventshow"
             %br
       / = will_paginate @artists, :class => 'centered'

@@ -26,10 +26,6 @@
             %strong Date
             = Date.parse(event.event_json['start']['date']).strftime("%b %d, %Y")
             %br
-            %strong Event ID
-            %br
-            = event.event_json['counter_id']
-            %br
             = link_to "View this event", venue_path(event), :class => "venueeventshow"
             %br
       / = will_paginate @venues, :class => 'centered'

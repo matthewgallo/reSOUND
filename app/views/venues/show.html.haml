@@ -36,11 +36,6 @@
     = Date.parse(@venue.event_json['start']['date']).strftime("%b %d, %Y")
     %br
     %br
-    %strong Event ID
-    %br
-    = @venue.event_json['counter_id']
-    %br
-    %br
     %strong View More details
     %br
     = link_to "View More Details on this Event through Songkick", @venue.event_json['uri'], :target => "_blank"
