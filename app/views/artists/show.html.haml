@@ -46,6 +46,9 @@
     %br
     = image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}&zoom=14&size=700x400&maptype=roadmap&markers=color:blue%7Clabel:Venue%7C#{@artist.event_json['venue']['displayName']},#{@artist.event_json['location']['city']}"
 
+
+/ Spotify Artist Info
+/ Only show/search spotify api info, if artist is not nil
 - if @spotify_artist_id != nil
   %h1.centered.resound.resound-search
     Artist Details

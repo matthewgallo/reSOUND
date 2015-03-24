@@ -28,7 +28,6 @@
             %br
             = link_to "View this event", venue_path(event), :class => "venueeventshow"
             %br
-      / = will_paginate @venues, :class => 'centered'
 - else
   %h3.centered This venue does not have any upcoming events, check back soon! Thanks for using 
   %h1.resound-error.centered RESOUND.

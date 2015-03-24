@@ -28,7 +28,6 @@
             %br
             = link_to "View this event", artist_path(event), :class => "artisteventshow"
             %br
-      / = will_paginate @artists, :class => 'centered'
 - else
   %h3.centered This artist does not have any upcoming events, check back soon! Thanks for using 
   %h1.resound-error.centered RESOUND.

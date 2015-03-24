@@ -28,7 +28,6 @@
             %br
             = link_to "View this event", event_path(event), :class => "eventshow"
             %br
-      / = will_paginate @events, :class => "centered"
 - else
   %h3.centered This location does not have any upcoming events, check back soon! Thanks for using
   %h1.resound-error.centered RESOUND.
