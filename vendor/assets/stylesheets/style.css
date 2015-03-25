@@ -126,11 +126,25 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 2px solid #1abc9c;
 }
 
+.navbar-header > a:hover {
+  color: #1abc9c;
+  border-bottom: 5px solid #1abc9c;
+}
+
 .resoundbutton {
-  border-radius: 10px;
+  /*border-radius: 10px;*/
   background: #1abc9c;
   color: #fff;
   padding: 20px;
+  border: none;
+}
+
+.resoundbutton:hover {
+  /*border-radius: 10px;*/
+  background: #66D8C2;
+  color: #fff;
+  padding: 20px;
+  border: none;
 }
 
 .resound {
@@ -167,6 +181,9 @@ li > a {
   height: 90%;
 }
 
+/*.well {
+  background-color: #3498db;
+}*/
 
 /* ==========================================================================
    Wrap Sections
